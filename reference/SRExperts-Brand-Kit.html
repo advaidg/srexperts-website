@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRExperts — Brand Kit</title>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #f5f4f1;
+  color: #0d1a35;
+}
+
+/* ── Nav ── */
+.kit-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(245,244,241,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(28,52,120,0.1);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 56px;
+}
+.kit-nav-brand {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+  color: #1C3478; letter-spacing: 0.01em; display: flex; align-items: baseline; gap: 1px;
+}
+.kit-nav-brand .dot { width: 6px; height: 6px; border-radius: 50%; background: #C4A24A; display: inline-block; margin-left: 1px; margin-bottom: 6px; }
+.kit-nav-links { display: flex; gap: 28px; }
+.kit-nav-links a {
+  font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #8a9ab8; text-decoration: none; transition: color 0.2s;
+}
+.kit-nav-links a:hover { color: #1C3478; }
+
+/* ── Sections ── */
+section {
+  padding: 96px 80px 80px;
+  border-bottom: 1px solid rgba(28,52,120,0.08);
+}
+section:first-of-type { padding-top: 140px; }
+
+.section-label {
+  font-size: 9.5px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+  color: #C4A24A; margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 28px;
+  color: #1C3478; margin-bottom: 40px; letter-spacing: -0.01em;
+}
+
+/* ── Logo variants grid ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.logo-tile {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 52px 32px 28px; position: relative; min-height: 220px;
+}
+.tile-label {
+  position: absolute; bottom: 18px; left: 0; right: 0;
+  text-align: center; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #aaa; font-weight: 400;
+}
+.logo-tile.on-white { background: #fff; }
+.logo-tile.on-navy { background: #1C3478; }
+.logo-tile.on-dark { background: #0d1a35; }
+.logo-tile.on-grey { background: #f0f0ed; }
+.logo-tile.on-navy .tile-label,
+.logo-tile.on-dark .tile-label { color: rgba(255,255,255,0.3); }
+
+/* copy button */
+.copy-btn {
+  position: absolute; top: 14px; right: 14px;
+  background: rgba(28,52,120,0.07); border: none; border-radius: 4px;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 8px; cursor: pointer; color: #8a9ab8; font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.copy-btn:hover { background: rgba(28,52,120,0.15); color: #1C3478; }
+.logo-tile.on-navy .copy-btn,
+.logo-tile.on-dark .copy-btn { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
+.logo-tile.on-navy .copy-btn:hover,
+.logo-tile.on-dark .copy-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+/* ── Colour palette ── */
+.color-row { display: flex; gap: 2px; margin-bottom: 2px; }
+.swatch {
+  flex: 1; height: 100px; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 14px 16px; position: relative; cursor: pointer;
+}
+.swatch-name { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; margin-bottom: 2px; }
+.swatch-hex { font-size: 10px; font-weight: 300; letter-spacing: 0.06em; font-family: monospace; }
+.swatch.light .swatch-name, .swatch.light .swatch-hex { color: #1C3478; }
+.swatch.dark .swatch-name, .swatch.dark .swatch-hex { color: rgba(255,255,255,0.8); }
+.swatch-tints { display: flex; gap: 2px; margin-top: 2px; }
+.tint { flex: 1; height: 48px; border-radius: 0; }
+
+/* ── Typography ── */
+.type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.type-card { padding: 36px; background: #fff; }
+.type-meta { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #C4A24A; margin-bottom: 14px; }
+.type-specimen { line-height: 1; margin-bottom: 16px; }
+.type-detail { font-size: 10px; color: #8a9ab8; line-height: 1.7; }
+.type-weights { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; }
+.weight-chip { font-size: 11px; color: #1C3478; }
+
+/* ── Usage rules ── */
+.rules-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.rule-tile {
+  padding: 32px 24px 24px; background: #fff; display: flex; flex-direction: column; align-items: center;
+  gap: 18px; position: relative;
+}
+.rule-tile.dont { position: relative; overflow: hidden; }
+.dont-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #d94040;
+}
+.rule-badge {
+  font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+  padding: 3px 8px; border-radius: 2px;
+}
+.badge-do { background: rgba(28,52,120,0.08); color: #1C3478; }
+.badge-dont { background: rgba(217,64,64,0.1); color: #d94040; }
+.rule-text { font-size: 10px; color: #8a9ab8; text-align: center; line-height: 1.5; }
+.rule-visual { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; }
+
+/* ── Business card ── */
+.card-3d-wrap {
+  perspective: 1000px;
+  display: inline-flex; gap: 48px; flex-wrap: wrap; justify-content: center;
+}
+.biz-card {
+  width: 340px; height: 190px; border-radius: 6px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 28px 28px 22px;
+  box-shadow: 0 16px 48px rgba(28,52,120,0.18), 0 2px 8px rgba(0,0,0,0.06);
+  position: relative; overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: default;
+  flex-shrink: 0;
+}
+.biz-card:hover { transform: translateY(-4px); }
+.biz-card.front { background: #1C3478; }
+.biz-card.back { background: #fff; border: 1px solid rgba(28,52,120,0.08); }
+.biz-card-corner {
+  position: absolute; bottom: -28px; right: -28px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+
+/* ── Letterhead ── */
+.letterhead-wrap {
+  background: #fff;
+  width: 100%; max-width: 680px; margin: 0 auto;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  aspect-ratio: 8.5/11;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.lh-header {
+  background: #1C3478; padding: 28px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.lh-body { flex: 1; padding: 40px 48px; display: flex; flex-direction: column; gap: 20px; }
+.lh-footer {
+  border-top: 1px solid rgba(28,52,120,0.1);
+  padding: 16px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.lh-line { height: 8px; border-radius: 4px; background: rgba(28,52,120,0.07); }
+.lh-line.short { width: 60%; }
+.lh-line.shorter { width: 40%; }
+.lh-line.med { width: 80%; }
+
+/* ── Social assets ── */
+.social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.social-card { background: #fff; padding: 24px; }
+.social-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a9ab8; margin-bottom: 16px; }
+.li-banner {
+  width: 100%; aspect-ratio: 4/1; background: #1C3478;
+  display: flex; align-items: center; justify-content: center; border-radius: 4px;
+  position: relative; overflow: hidden;
+}
+.li-avatar {
+  width: 80px; height: 80px; border-radius: 50%; background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.email-sig { padding: 20px; background: #f7f6f3; border-left: 3px solid #1C3478; }
+
+/* ── Icon only ── */
+.icon-sizes { display: flex; gap: 24px; align-items: flex-end; }
+
+/* download row */
+.dl-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+.dl-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border: 1.5px solid rgba(28,52,120,0.2);
+  border-radius: 4px; cursor: pointer; background: #fff;
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  letter-spacing: 0.08em; color: #1C3478; font-weight: 500;
+  transition: all 0.15s;
+}
+.dl-btn:hover { background: #1C3478; color: #fff; border-color: #1C3478; }
+.dl-btn .ext { font-size: 9px; opacity: 0.5; font-weight: 300; }
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#0d1a35">
+  <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="500" fill="#0d1a35"/>
+    <text x="400" y="230" font-family="sans-serif" font-weight="700" font-size="96" fill="#ffffff" text-anchor="middle" letter-spacing="-2">SRExperts</text>
+    <circle cx="686" cy="158" r="12" fill="#C4A24A"/>
+    <text x="400" y="280" font-family="sans-serif" font-weight="300" font-size="18" fill="rgba(255,255,255,0.4)" text-anchor="middle" letter-spacing="6">THE ONLY EXPERT YOU NEED</text>
+    <rect x="300" y="310" width="200" height="1.5" fill="rgba(196,162,74,0.5)"/>
+  </svg>
+</template>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useRef } = React;
+
+const NAVY  = "#1C3478";
+const GOLD  = "#C4A24A";
+const WHITE = "#FFFFFF";
+const INK   = "#0d1a35";
+
+/* ── Core logo component ── */
+function Logo({ size = 48, navy = NAVY, gold = GOLD, white = WHITE, reversed = false, stacked = false, monoLight = false, monoDark = false, iconOnly = false }) {
+  const fg = reversed ? white : (monoLight ? "#ccc" : (monoDark ? "#444" : navy));
+  const dotColor = reversed ? (monoLight ? white : (monoDark ? "#666" : white)) : (monoLight ? "#999" : (monoDark ? "#666" : gold));
+  const wordStyle = {
+    fontFamily: "'Syne', sans-serif",
+    fontWeight: 700,
+    fontSize: size,
+    color: fg,
+    letterSpacing: "-0.015em",
+    lineHeight: 1,
+    userSelect: "none",
+  };
+  if (iconOnly) {
+    return (
+      <div style={{ display: "flex", alignItems: "baseline", gap: 0 }}>
+        <span style={{ ...wordStyle }}>SR</span>
+        <span style={{ width: size * 0.15, height: size * 0.15, borderRadius: "50%", background: dotColor, display: "inline-block", marginLeft: 2, marginBottom: size * 0.12 }} />
+      </div>
+    );
+  }
+  if (stacked) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", userSelect: "none" }}>
+        <div style={{ display: "flex", alignItems: "baseline" }}>
+          <span style={{ ...wordStyle, fontSize: size * 1.2 }}>SRExperts</span>
+          <span style={{ width: size * 0.18, height: size * 0.18, borderRadius: "50%", background: dotColor, display: "inline-block", marginLeft: 2, marginBottom: size * 0.14 }} />
+        </div>
+        <div style={{ width: "100%", height: 1, background: reversed ? "rgba(255,255,255,0.2)" : "rgba(28,52,120,0.15)", margin: "8px 0 6px" }} />
+        <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: size * 0.2, letterSpacing: "0.28em", color: reversed ? "rgba(255,255,255,0.45)" : "#8a9ab8", textTransform: "uppercase" }}>
+          The Only Expert You Need
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div style={{ display: "flex", alignItems: "baseline", gap: 0, userSelect: "none" }}>
+      <span style={{ ...wordStyle }}>SRExperts</span>
+      <span style={{ width: size * 0.15, height: size * 0.15, borderRadius: "50%", background: dotColor, display: "inline-block", marginLeft: 2, marginBottom: size * 0.12 }} />
+    </div>
+  );
+}
+
+/* ── Section: Cover / intro ── */
+function CoverSection() {
+  return (
+    <section id="cover" style={{ background: INK, color: WHITE, borderBottom: "none", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px" }}>
+      <div style={{ maxWidth: 800 }}>
+        <div style={{ fontSize: 9.5, fontWeight: 500, letterSpacing: "0.3em", textTransform: "uppercase", color: GOLD, marginBottom: 32 }}>Brand Identity Guidelines</div>
+        <Logo size={64} reversed />
+        <div style={{ marginTop: 48, fontFamily: "'DM Sans',sans-serif", fontWeight: 200, fontSize: 15, letterSpacing: "0.04em", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, maxWidth: 520 }}>
+          A complete visual identity system for SRExperts — the only consulting brand you need.
+        </div>
+        <div style={{ marginTop: 56, display: "flex", gap: 32, flexWrap: "wrap" }}>
+          {["01  Logo Suite","02  Colours","03  Typography","04  Usage","05  Stationery","06  Digital"].map((s,i) => (
+            <a key={i} href={`#${s.split("  ")[1].toLowerCase().replace(" ","-")}`}
+              style={{ fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => e.target.style.color="rgba(255,255,255,0.8)"}
+              onMouseLeave={e => e.target.style.color="rgba(255,255,255,0.35)"}
+            >{s}</a>
+          ))}
+        </div>
+      </div>
+      {/* corner accent */}
+      <div style={{ position: "absolute", bottom: 0, right: 0, width: 280, height: 280, borderRadius: "50%", background: `${NAVY}55`, transform: "translate(40%, 40%)" }} />
+    </section>
+  );
+}
+
+/* ── Section: Logo suite ── */
+function LogoSection() {
+  const [copied, setCopied] = useState(null);
+  const svgFor = (variant) => {
+    // Return an inline SVG string for each variant
+    const svgMap = {
+      primary: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" width="320" height="72"><text x="0" y="56" font-family="Syne,sans-serif" font-weight="700" font-size="56" fill="#1C3478" letter-spacing="-0.015em">SRExperts</text><circle cx="308" cy="18" r="6" fill="#C4A24A"/></svg>`,
+      reversed: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" width="320" height="72"><rect width="320" height="72" fill="#1C3478"/><text x="0" y="56" font-family="Syne,sans-serif" font-weight="700" font-size="56" fill="white" letter-spacing="-0.015em">SRExperts</text><circle cx="308" cy="18" r="6" fill="white"/></svg>`,
+    };
+    return svgMap[variant] || svgMap.primary;
+  };
+  const handleCopy = (label) => {
+    setCopied(label);
+    setTimeout(() => setCopied(null), 1400);
+  };
+  return (
+    <section id="logo-suite">
+      <div className="section-label">01</div>
+      <div className="section-title">Logo Suite</div>
+      <div className="logo-grid">
+        {/* Primary */}
+        <div className="logo-tile on-white">
+          <button className="copy-btn" onClick={() => handleCopy("primary")}>{copied==="primary" ? "✓" : "Copy SVG"}</button>
+          <Logo size={42} />
+          <span className="tile-label">Primary — Light backgrounds</span>
+        </div>
+        {/* Reversed */}
+        <div className="logo-tile on-navy">
+          <button className="copy-btn" onClick={() => handleCopy("reversed")}>{copied==="reversed" ? "✓" : "Copy SVG"}</button>
+          <Logo size={42} reversed />
+          <span className="tile-label">Reversed — Navy background</span>
+        </div>
+        {/* Dark reversed */}
+        <div className="logo-tile on-dark">
+          <button className="copy-btn" onClick={() => handleCopy("dark")}>{copied==="dark" ? "✓" : "Copy SVG"}</button>
+          <Logo size={42} reversed />
+          <span className="tile-label">Reversed — Dark background</span>
+        </div>
+        {/* Stacked */}
+        <div className="logo-tile on-white" style={{ gridColumn: "span 2" }}>
+          <Logo size={34} stacked />
+          <span className="tile-label">Stacked lockup with tagline</span>
+        </div>
+        {/* Monochrome */}
+        <div className="logo-tile on-grey">
+          <Logo size={42} monoDark />
+          <span className="tile-label">Monochrome — Single colour</span>
+        </div>
+      </div>
+
+      {/* Icon / monogram row */}
+      <div style={{ marginTop: 2, background: "#fff", padding: "36px 32px" }}>
+        <div style={{ fontSize: 9.5, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#8a9ab8", marginBottom: 24 }}>Icon / Monogram — sizes</div>
+        <div className="icon-sizes">
+          {[72, 56, 40, 28, 20, 16].map(sz => (
+            <div key={sz} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+              <Logo size={sz} iconOnly />
+              <span style={{ fontSize: 9, color: "#aaa", letterSpacing: "0.1em" }}>{sz}px</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Section: Colours ── */
+function ColourSection() {
+  const [copied, setCopied] = useState(null);
+  const copy = (hex, label) => {
+    navigator.clipboard?.writeText(hex);
+    setCopied(label); setTimeout(() => setCopied(null), 1200);
+  };
+  const Swatch = ({ bg, name, hex, light, tints = [] }) => (
+    <div className={`swatch ${light ? "light" : "dark"}`} style={{ background: bg }} onClick={() => copy(hex, name)} title="Click to copy">
+      <div className="swatch-name">{name}</div>
+      <div className="swatch-hex">{copied === name ? "Copied!" : hex}</div>
+    </div>
+  );
+  return (
+    <section id="colours">
+      <div className="section-label">02</div>
+      <div className="section-title">Colour System</div>
+      <div className="color-row">
+        <Swatch bg={NAVY} name="Navy" hex={NAVY} />
+        <Swatch bg="#24449c" name="Navy Light" hex="#24449c" />
+        <Swatch bg="#0d1a35" name="Ink" hex="#0d1a35" />
+        <Swatch bg={GOLD} name="Gold" hex={GOLD} light />
+        <Swatch bg="#e8c96a" name="Gold Light" hex="#e8c96a" light />
+        <Swatch bg="#f5f4f1" name="Off-white" hex="#f5f4f1" light />
+        <Swatch bg="#fff" name="White" hex="#ffffff" light style={{ border: "1px solid #eee" }} />
+      </div>
+      <div className="swatch-tints" style={{ marginTop: 2 }}>
+        {[0.08, 0.15, 0.25, 0.4, 0.6, 0.8, 1.0].map((o, i) => (
+          <div key={i} className="tint" style={{ background: `rgba(28,52,120,${o})`, flex: 1, height: 36 }} />
+        ))}
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+        <span style={{ fontSize: 9, color: "#aaa", letterSpacing: "0.1em" }}>Navy 8%</span>
+        <span style={{ fontSize: 9, color: "#aaa", letterSpacing: "0.1em" }}>Navy 100%</span>
+      </div>
+      {/* Usage guidance */}
+      <div style={{ marginTop: 28, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2 }}>
+        {[
+          { label: "Primary", desc: "Navy is the dominant brand colour. Use for headlines, CTAs, logo.", col: NAVY, dark: true },
+          { label: "Accent", desc: "Gold is used sparingly — the dot, dividers, and key highlights only.", col: GOLD, dark: false },
+          { label: "Background", desc: "Off-white and white for all document and digital surfaces.", col: "#f5f4f1", dark: false },
+        ].map((item, i) => (
+          <div key={i} style={{ background: item.col, padding: "24px", border: item.dark ? "none" : "1px solid rgba(28,52,120,0.08)" }}>
+            <div style={{ fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: item.dark ? "rgba(255,255,255,0.45)" : "#8a9ab8", marginBottom: 8 }}>{item.label}</div>
+            <div style={{ fontSize: 12, color: item.dark ? "rgba(255,255,255,0.8)" : "#444", lineHeight: 1.6 }}>{item.desc}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ── Section: Typography ── */
+function TypographySection() {
+  return (
+    <section id="typography">
+      <div className="section-label">03</div>
+      <div className="section-title">Typography</div>
+      <div className="type-grid">
+        <div className="type-card">
+          <div className="type-meta">Display / Logo — Syne</div>
+          <div className="type-specimen" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 52, color: NAVY, letterSpacing: "-0.02em" }}>Aa</div>
+          <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 18, color: NAVY, marginBottom: 12, fontWeight: 600 }}>Strategy. Expertise. Growth.</div>
+          <div className="type-detail">
+            Used for: Logo, headlines, display text<br/>
+            Weights: 400 · 600 · 700 · 800
+          </div>
+          <div className="type-weights">
+            {[["400","Regular"],["600","SemiBold"],["700","Bold"],["800","ExtraBold"]].map(([w,n]) => (
+              <div key={w} className="weight-chip" style={{ fontFamily: "'Syne',sans-serif", fontWeight: w }}>{n}</div>
+            ))}
+          </div>
+        </div>
+        <div className="type-card">
+          <div className="type-meta">Body / UI — DM Sans</div>
+          <div className="type-specimen" style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 52, color: NAVY }}>Aa</div>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#555", marginBottom: 12, fontWeight: 300, lineHeight: 1.7 }}>
+            We deliver insight-driven advisory services to help organisations navigate complexity and build lasting competitive advantage.
+          </div>
+          <div className="type-detail">
+            Used for: Body copy, UI, captions, tagline<br/>
+            Weights: 200 · 300 · 400 · 500
+          </div>
+          <div className="type-weights">
+            {[["200","Thin"],["300","Light"],["400","Regular"],["500","Medium"]].map(([w,n]) => (
+              <div key={w} className="weight-chip" style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: w }}>{n}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* type scale */}
+      <div style={{ marginTop: 2, background: "#fff", padding: "32px 36px" }}>
+        <div style={{ fontSize: 9.5, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#8a9ab8", marginBottom: 24 }}>Type Scale</div>
+        {[
+          { role: "Display", size: 48, weight: 700, font: "Syne", text: "The Only Expert You Need" },
+          { role: "H1", size: 36, weight: 700, font: "Syne", text: "Strategic Consulting" },
+          { role: "H2", size: 24, weight: 600, font: "Syne", text: "Our Services & Expertise" },
+          { role: "H3", size: 18, weight: 500, font: "DM Sans", text: "Advisory · Legal · Financial" },
+          { role: "Body", size: 14, weight: 300, font: "DM Sans", text: "We partner with leaders to solve their most critical challenges and unlock new value." },
+          { role: "Caption", size: 10, weight: 400, font: "DM Sans", text: "SRExperts · The Only Expert You Need · Consulting · Advisory", letterSpacing: "0.2em", upper: true },
+        ].map((t, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "baseline", gap: 24, padding: "12px 0", borderBottom: "1px solid rgba(28,52,120,0.05)" }}>
+            <span style={{ fontSize: 9, color: "#bbb", letterSpacing: "0.15em", textTransform: "uppercase", width: 56, flexShrink: 0 }}>{t.role}</span>
+            <span style={{ fontFamily: `'${t.font}',sans-serif`, fontWeight: t.weight, fontSize: t.size, color: NAVY, lineHeight: 1.1, letterSpacing: t.letterSpacing, textTransform: t.upper ? "uppercase" : "none" }}>{t.text}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ── Section: Usage ── */
+function UsageSection() {
+  const RedX = () => (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="14" stroke="#d94040" strokeWidth="1.5"/>
+      <line x1="10" y1="10" x2="22" y2="22" stroke="#d94040" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="22" y1="10" x2="10" y2="22" stroke="#d94040" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  );
+  const Check = () => (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="14" stroke={NAVY} strokeWidth="1.5"/>
+      <polyline points="10,17 14,21 22,12" stroke={NAVY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+  const rules = [
+    { do: true, label: "Clear space", desc: "Maintain clear space equal to the height of 'S' on all sides", visual: (
+      <div style={{ position: "relative", padding: 16, border: `1.5px dashed rgba(28,52,120,0.2)`, borderRadius: 2 }}>
+        <Logo size={24} />
+      </div>
+    )},
+    { do: true, label: "On colour", desc: "Use navy on white, or white on navy. Always sufficient contrast.", visual: (
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <div style={{ background: NAVY, padding: "6px 10px", borderRadius: 2 }}><Logo size={16} reversed /></div>
+        <div style={{ background: "#fff", padding: "6px 10px", border: "1px solid #eee", borderRadius: 2 }}><Logo size={16} /></div>
+      </div>
+    )},
+    { do: false, label: "No stretching", desc: "Never distort or scale unevenly", visual: (
+      <div style={{ transform: "scaleX(1.4)", transformOrigin: "left", opacity: 0.5 }}><Logo size={20} /></div>
+    )},
+    { do: false, label: "No recolouring", desc: "Never change brand colours or apply gradients to the logo", visual: (
+      <div style={{ background: "linear-gradient(135deg,#e66,#a0f)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 22 }}>SRExperts</div>
+    )},
+  ];
+  return (
+    <section id="usage">
+      <div className="section-label">04</div>
+      <div className="section-title">Usage Guidelines</div>
+      <div className="rules-grid">
+        {rules.map((r, i) => (
+          <div key={i} className={`rule-tile${r.do ? "" : " dont"}`}>
+            {!r.do && <div className="dont-bar"/>}
+            <span className={`rule-badge ${r.do ? "badge-do" : "badge-dont"}`}>{r.do ? "Do" : "Don't"}</span>
+            <div className="rule-visual">{r.visual}</div>
+            <div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: "#1C3478", marginBottom: 4 }}>{r.label}</div>
+              <div className="rule-text">{r.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ── Section: Stationery ── */
+function StationerySection() {
+  return (
+    <section id="stationery">
+      <div className="section-label">05</div>
+      <div className="section-title">Stationery</div>
+
+      {/* Business cards */}
+      <div style={{ marginBottom: 48 }}>
+        <div style={{ fontSize: 9.5, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#8a9ab8", marginBottom: 24 }}>Business Card</div>
+        <div className="card-3d-wrap">
+          {/* Front */}
+          <div>
+            <div className="biz-card front">
+              <div className="biz-card-corner"/>
+              <Logo size={22} reversed />
+              <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                <div style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 14, color: WHITE, letterSpacing: "0.01em" }}>Sarah Reynolds</div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 10, color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Managing Director</div>
+              </div>
+            </div>
+            <div style={{ fontSize: 9, color: "#aaa", textAlign: "center", marginTop: 8, letterSpacing: "0.1em" }}>Front</div>
+          </div>
+          {/* Back */}
+          <div>
+            <div className="biz-card back">
+              <div style={{ width: 48, height: 3, background: NAVY, borderRadius: 2 }}/>
+              <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 10, color: "#8a9ab8", letterSpacing: "0.08em" }}>sarah@srexperts.com</div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 10, color: "#8a9ab8", letterSpacing: "0.08em" }}>+1 (212) 555 0198</div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 10, color: "#8a9ab8", letterSpacing: "0.08em" }}>srexperts.com</div>
+              </div>
+              <div style={{ position: "absolute", bottom: 22, right: 24 }}>
+                <Logo size={13} />
+              </div>
+            </div>
+            <div style={{ fontSize: 9, color: "#aaa", textAlign: "center", marginTop: 8, letterSpacing: "0.1em" }}>Back</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Letterhead */}
+      <div>
+        <div style={{ fontSize: 9.5, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#8a9ab8", marginBottom: 24 }}>Letterhead</div>
+        <div className="letterhead-wrap">
+          {/* Header */}
+          <div className="lh-header">
+            <Logo size={26} reversed />
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: "0.15em", textTransform: "uppercase", textAlign: "right" }}>
+              The Only Expert You Need<br/>
+              <span style={{ color: "rgba(255,255,255,0.25)", display: "block", marginTop: 2 }}>srexperts.com</span>
+            </div>
+          </div>
+          {/* Gold rule */}
+          <div style={{ height: 3, background: GOLD }}/>
+          {/* Body */}
+          <div className="lh-body">
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 10, color: "#8a9ab8", letterSpacing: "0.1em" }}>23 April 2026</div>
+            <div className="lh-line" style={{ width: 120, height: 6 }}/>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div className="lh-line med"/>
+              <div className="lh-line"/>
+              <div className="lh-line short"/>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div className="lh-line med"/>
+              <div className="lh-line"/>
+              <div className="lh-line"/>
+              <div className="lh-line short"/>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: "auto" }}>
+              <div className="lh-line shorter"/>
+              <div className="lh-line" style={{ width: "30%" }}/>
+            </div>
+          </div>
+          {/* Footer */}
+          <div className="lh-footer">
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 8.5, color: "#aaa", letterSpacing: "0.1em" }}>
+              SRExperts · The Only Expert You Need
+            </div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 8.5, color: "#aaa", letterSpacing: "0.1em" }}>
+              srexperts.com · info@srexperts.com
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Section: Digital ── */
+function DigitalSection() {
+  return (
+    <section id="digital">
+      <div className="section-label">06</div>
+      <div className="section-title">Digital Assets</div>
+      <div className="social-grid">
+
+        {/* LinkedIn Banner */}
+        <div style={{ gridColumn: "span 2" }}>
+          <div className="social-card">
+            <div className="social-label">LinkedIn Banner · 1584 × 396px</div>
+            <div className="li-banner">
+              {/* subtle pattern */}
+              <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 32px)" }}/>
+              <div style={{ position: "absolute", left: "8%", display: "flex", flexDirection: "column", gap: 10 }}>
+                <Logo size={32} reversed />
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 200, fontSize: 11, color: "rgba(255,255,255,0.45)", letterSpacing: "0.3em", textTransform: "uppercase" }}>The Only Expert You Need</div>
+              </div>
+              {/* Right accent */}
+              <div style={{ position: "absolute", right: "8%", display: "flex", gap: 3, alignItems: "flex-end" }}>
+                {[0.4,0.55,0.7,0.85,1].map((h,i) => (
+                  <div key={i} style={{ width: 6, background: i===4 ? GOLD : "rgba(255,255,255,0.25)", borderRadius: 3, height: `${h * 48}px` }}/>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Profile avatar */}
+        <div>
+          <div className="social-card">
+            <div className="social-label">Profile Avatar · 400 × 400px</div>
+            <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
+              <div className="li-avatar" style={{ background: NAVY, width: 96, height: 96 }}>
+                <Logo size={22} reversed iconOnly />
+              </div>
+              <div className="li-avatar" style={{ background: WHITE, width: 96, height: 96, border: `3px solid ${NAVY}` }}>
+                <Logo size={22} iconOnly />
+              </div>
+              <div className="li-avatar" style={{ background: GOLD, width: 96, height: 96 }}>
+                <span style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: 22, color: NAVY, letterSpacing: "-0.02em" }}>SR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Email signature */}
+        <div>
+          <div className="social-card">
+            <div className="social-label">Email Signature</div>
+            <div className="email-sig">
+              <Logo size={18} />
+              <div style={{ marginTop: 12, height: 1, background: "rgba(28,52,120,0.1)" }}/>
+              <div style={{ marginTop: 10, fontFamily: "'DM Sans',sans-serif" }}>
+                <div style={{ fontWeight: 500, fontSize: 12, color: NAVY }}>Sarah Reynolds</div>
+                <div style={{ fontWeight: 300, fontSize: 11, color: "#8a9ab8", marginTop: 2 }}>Managing Director</div>
+                <div style={{ fontWeight: 300, fontSize: 10, color: "#aaa", marginTop: 6, letterSpacing: "0.04em" }}>sarah@srexperts.com · +1 (212) 555 0198</div>
+                <div style={{ fontWeight: 300, fontSize: 10, color: GOLD, marginTop: 2, letterSpacing: "0.04em" }}>srexperts.com</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Favicon */}
+        <div style={{ gridColumn: "span 2" }}>
+          <div className="social-card">
+            <div className="social-label">Favicon / App Icon</div>
+            <div style={{ display: "flex", gap: 20, alignItems: "flex-end", flexWrap: "wrap" }}>
+              {[
+                { size: 96, label: "96px", style: { background: NAVY, borderRadius: 16 } },
+                { size: 64, label: "64px", style: { background: NAVY, borderRadius: 10 } },
+                { size: 48, label: "48px", style: { background: NAVY, borderRadius: 8 } },
+                { size: 32, label: "32px", style: { background: NAVY, borderRadius: 5 } },
+                { size: 20, label: "16px", style: { background: NAVY, borderRadius: 3 } },
+              ].map(({ size, label, style }) => (
+                <div key={size} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+                  <div style={{ ...style, width: size, height: size, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: size * 0.38, color: WHITE, letterSpacing: "-0.04em" }}>SR</span>
+                  </div>
+                  <span style={{ fontSize: 9, color: "#aaa", letterSpacing: "0.1em" }}>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Download row */}
+      <div className="dl-row">
+        {[
+          ["Primary Logo", ".svg"], ["Reversed Logo", ".svg"], ["Icon / Mark", ".svg"],
+          ["Colour Palette", ".ase"], ["Brand Kit", ".zip"],
+        ].map(([name, ext]) => (
+          <button key={name} className="dl-btn" title={`Download ${name}${ext}`}>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1v7M3 6l3 3 3-3M1 10h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            {name} <span className="ext">{ext}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ── Nav ── */
+function Nav() {
+  return (
+    <nav className="kit-nav">
+      <div className="kit-nav-brand">
+        SRExperts<span className="dot"/>
+        <span style={{ fontWeight: 300, fontSize: 11, letterSpacing: "0.25em", color: "#8a9ab8", marginLeft: 12, textTransform: "uppercase" }}>Brand Kit</span>
+      </div>
+      <div className="kit-nav-links">
+        {[["logo-suite","Logo"],["colours","Colours"],["typography","Type"],["usage","Usage"],["stationery","Stationery"],["digital","Digital"]].map(([id,label]) => (
+          <a key={id} href={`#${id}`}>{label}</a>
+        ))}
+      </div>
+    </nav>
+  );
+}
+
+/* ── Tweaks ── */
+function Tweaks({ visible }) {
+  if (!visible) return null;
+  return (
+    <div style={{
+      position: "fixed", bottom: 28, right: 28, zIndex: 300,
+      background: INK, border: "1px solid rgba(255,255,255,0.1)",
+      borderRadius: 10, padding: "18px 22px", color: WHITE,
+      fontFamily: "'DM Sans',sans-serif", fontSize: 12, minWidth: 200,
+    }}>
+      <div style={{ fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 14, opacity: 0.45 }}>Tweaks</div>
+      <div style={{ fontSize: 10, opacity: 0.4, lineHeight: 1.7 }}>
+        Brand Kit is complete.<br />
+        Tell me what to refine —<br />
+        colours, typography, assets.
+      </div>
+    </div>
+  );
+}
+
+/* ── Root ── */
+function App() {
+  const [tweaksVisible, setTweaksVisible] = useState(false);
+  React.useEffect(() => {
+    const h = e => {
+      if (e.data?.type === "__activate_edit_mode") setTweaksVisible(true);
+      if (e.data?.type === "__deactivate_edit_mode") setTweaksVisible(false);
+    };
+    window.addEventListener("message", h);
+    window.parent.postMessage({ type: "__edit_mode_available" }, "*");
+    return () => window.removeEventListener("message", h);
+  }, []);
+
+  return (
+    <>
+      <Nav />
+      <CoverSection />
+      <LogoSection />
+      <ColourSection />
+      <TypographySection />
+      <UsageSection />
+      <StationerySection />
+      <DigitalSection />
+      <Tweaks visible={tweaksVisible} />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

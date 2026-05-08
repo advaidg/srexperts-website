@@ -1,0 +1,246 @@
+.hero {
+  padding-block: clamp(5rem, 4rem + 6vw, 9rem) clamp(2rem, 1rem + 3vw, 4rem);
+}
+
+.heroHead {
+  margin-block: 1rem 2rem;
+  max-width: 18ch;
+}
+
+.heroBody {
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  color: var(--color-ink);
+  max-width: 60ch;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+@media (min-width: 880px) {
+  .grid {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.card {
+  background: var(--color-paper);
+  padding: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  border: 1px solid var(--color-line);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: auto -40px -40px auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(196, 162, 74, 0.12) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.cardTitle {
+  font-family: var(--font-syne);
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  letter-spacing: -0.02em;
+  color: var(--color-navy);
+  line-height: 1.1;
+  max-width: 18ch;
+}
+
+.cardBody {
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  color: var(--color-ink);
+  max-width: 50ch;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.guidance {
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-line);
+  padding-top: 1.5rem;
+}
+
+.guidance summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  font-weight: 500;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.guidance summary::after {
+  content: "+";
+  font-family: var(--font-syne);
+  font-size: 1.1rem;
+  color: var(--color-gold);
+  transition: transform var(--duration-fast);
+}
+
+.guidance[open] summary::after {
+  content: "−";
+  transform: rotate(180deg);
+}
+
+.guidance ul {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--color-mist);
+  line-height: 1.6;
+}
+
+.guidance li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.guidance li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 10px;
+  height: 1.5px;
+  background: var(--color-gold);
+}
+
+/* OFFICES */
+.offices {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.office {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.officeLabel {
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-gold);
+}
+
+.officeLines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  line-height: 1.55;
+}
+
+.officeLink {
+  color: var(--color-navy);
+  font-weight: 500;
+  transition: color var(--duration-fast);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.officeLink:hover {
+  border-bottom-color: var(--color-gold);
+}
+
+/* FUTURE FORM */
+.future {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: var(--color-bone-deep);
+  border: 1px dashed var(--color-line);
+}
+
+.future p {
+  font-size: 0.95rem;
+  color: var(--color-mist);
+  margin: 0.75rem 0 1rem;
+  max-width: 50ch;
+}
+
+.futureFields {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.futureFields li {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  padding: 0.4rem 0.85rem;
+  color: var(--color-mist);
+}
+
+.muted {
+  color: var(--color-mist-soft);
+  font-size: 0.78rem;
+}
+
+/* CLOSING */
+.closingHead {
+  margin: 0;
+  font-size: var(--text-h2);
+}
+
+.closingBody {
+  margin: 1rem auto 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  max-width: 50ch;
+}

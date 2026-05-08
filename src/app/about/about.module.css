@@ -1,0 +1,243 @@
+.hero {
+  padding-block: clamp(5rem, 4rem + 6vw, 9rem) clamp(2rem, 1rem + 3vw, 4rem);
+}
+
+.heroHead {
+  margin-block: 1rem 2rem;
+  max-width: 18ch;
+}
+
+.heroBody {
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  color: var(--color-ink);
+  max-width: 60ch;
+}
+
+.heroBodyEm {
+  font-family: var(--font-syne);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 1rem + 0.8vw, 1.625rem);
+  color: var(--color-navy);
+  margin-top: 1.5rem;
+  border-left: 2px solid var(--color-gold);
+  padding-left: 1rem;
+  max-width: 36ch;
+}
+
+.headerRow {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  max-width: 28ch;
+}
+
+.sectionHead {
+  font-size: var(--text-h2);
+  margin-top: 0.5rem;
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--color-line);
+  margin: 0;
+}
+
+.principle {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+@media (min-width: 720px) {
+  .principle {
+    grid-template-columns: 0.6fr 1fr;
+    gap: 3rem;
+    align-items: baseline;
+  }
+}
+
+.principleTerm {
+  font-family: var(--font-syne);
+  font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--color-navy);
+  font-style: italic;
+}
+
+.principleBody {
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  color: var(--color-ink);
+  margin: 0;
+  max-width: 50ch;
+}
+
+.approachGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (min-width: 860px) {
+  .approachGrid {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 6rem;
+  }
+}
+
+.approachBody {
+  display: grid;
+  gap: 1.5rem;
+  font-size: var(--text-body-lg);
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+.approachQuote {
+  font-family: var(--font-syne);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-navy);
+  border-top: 1px solid var(--color-line);
+  padding-top: 1.5rem;
+  max-width: 38ch;
+}
+
+/* LEADERSHIP */
+.leaderHead {
+  margin-block: 1rem 1.5rem;
+  max-width: 16ch;
+}
+
+.leaderBody {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  max-width: 60ch;
+  margin-bottom: 4rem;
+}
+
+.leaderGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 720px) {
+  .leaderGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.leaderCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderPhoto {
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(
+    180deg,
+    rgba(196, 162, 74, 0.1) 0%,
+    rgba(13, 26, 53, 0.4) 100%
+  );
+}
+
+.leaderMeta {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.leaderName {
+  font-family: var(--font-syne);
+  font-size: 1.25rem;
+  color: var(--color-paper);
+}
+
+.leaderRole {
+  font-size: 0.875rem;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.leaderCred {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+  margin: 0.5rem 0 0;
+}
+
+/* NUMBERS */
+.numbersHead {
+  margin-block: 1rem 3rem;
+  max-width: 22ch;
+}
+
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line);
+  margin: 0;
+}
+
+@media (min-width: 720px) {
+  .numbers {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.numberItem {
+  padding: 2.25rem 1.5rem;
+  border-right: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.numberValue {
+  font-family: var(--font-syne);
+  font-size: clamp(2.5rem, 1.8rem + 3vw, 4rem);
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1;
+}
+
+.numberLabel {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--color-mist);
+  text-transform: uppercase;
+}
+
+/* CTA */
+.ctaHead {
+  margin: 0;
+  font-size: var(--text-h2);
+}
+
+.ctaBody {
+  margin: 1rem auto 0;
+  color: var(--color-mist);
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  max-width: 44ch;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "SR Experts",
+  "short_name": "SRExperts",
+  "description": "Integrated advisory across strategy, finance, legal, technology, and marketing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f4f1",
+  "theme_color": "#1C3478",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/apple-icon.svg", "sizes": "180x180", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

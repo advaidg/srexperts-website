@@ -1,0 +1,185 @@
+.hero {
+  padding-block: clamp(5rem, 4rem + 6vw, 9rem) clamp(2rem, 1rem + 3vw, 4rem);
+}
+
+.heroHead {
+  margin-block: 1rem 2rem;
+  max-width: 16ch;
+}
+
+.heroBody {
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  color: var(--color-ink);
+  max-width: 60ch;
+}
+
+.indexWrap {
+  margin-top: 4rem;
+}
+
+.index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.indexLink {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-line);
+  transition: padding var(--duration-normal) var(--ease-out);
+}
+
+.index li:last-child .indexLink {
+  border-bottom: none;
+}
+
+.indexLink:hover {
+  padding-inline: 1rem;
+  background: rgba(28, 52, 120, 0.025);
+}
+
+.indexNo {
+  font-family: var(--font-syne);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  color: var(--color-gold);
+}
+
+.indexTitle {
+  font-family: var(--font-syne);
+  font-weight: 600;
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  color: var(--color-navy);
+  letter-spacing: -0.01em;
+}
+
+.indexJump {
+  color: var(--color-mist);
+  font-size: 1rem;
+  transition: transform var(--duration-fast) var(--ease-out),
+    color var(--duration-fast);
+}
+
+.indexLink:hover .indexJump {
+  color: var(--color-navy);
+  transform: translateY(3px);
+}
+
+/* PRACTICE BLOCK */
+.practiceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (min-width: 880px) {
+  .practiceGrid {
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+  }
+}
+
+.practiceHeader {
+  position: sticky;
+  top: 90px;
+}
+
+.practiceNo {
+  display: inline-block;
+  font-family: var(--font-syne);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  color: var(--color-gold);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.practiceTitle {
+  font-size: clamp(1.875rem, 1.4rem + 2vw, 2.875rem);
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+
+.practicePitch {
+  font-family: var(--font-syne);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-navy-light);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+  line-height: 1.4;
+  max-width: 28ch;
+}
+
+.practiceBody {
+  display: grid;
+  gap: 3rem;
+}
+
+.practiceSub {
+  font-family: var(--font-dmsans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-mist);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.deliverList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.deliverList li {
+  position: relative;
+  padding-left: 1.75rem;
+  font-size: var(--text-body-lg);
+  color: var(--color-ink);
+  line-height: 1.6;
+}
+
+.deliverList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 12px;
+  height: 1.5px;
+  background: var(--color-gold);
+}
+
+.practiceFor {
+  font-size: var(--text-body-lg);
+  color: var(--color-ink);
+  line-height: 1.65;
+  max-width: 50ch;
+}
+
+/* CTA */
+.ctaHead {
+  margin: 0;
+  font-size: var(--text-h2);
+}
+
+.ctaBody {
+  margin: 1rem auto 0;
+  color: var(--color-mist);
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  max-width: 44ch;
+}
