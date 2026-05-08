@@ -97,6 +97,114 @@ export default function IndustriesPage() {
         </div>
       </section>
 
+      {/* CROSS-SECTOR THEMES */}
+      <section className="section" aria-labelledby="cross-h">
+        <div className="container">
+          <header className={styles.crossHeader}>
+            <span className="eyebrow">The pattern across sectors</span>
+            <h2 id="cross-h" className={styles.sectionHead}>
+              Three themes that travel.
+            </h2>
+            <p className={styles.crossIntro}>
+              Sectors look different from the outside. From the inside, the
+              constraints converge. These are the three we keep encountering.
+            </p>
+          </header>
+
+          <ol className={styles.themes} data-reveal-stagger>
+            {[
+              {
+                no: "01",
+                title: "Capital is no longer the bottleneck. Discipline is.",
+                body:
+                  "Across sectors, mid-market businesses can raise. What separates the ones that scale is the operating cadence underneath the capital — governance, data, and the ability to execute against a plan in writing.",
+              },
+              {
+                no: "02",
+                title: "Compliance has become a growth lever.",
+                body:
+                  "Founders who treated regulation as paperwork lost two years to a single observation. Founders who treated it as a moat compounded advantage in regulated channels their competitors could not enter.",
+              },
+              {
+                no: "03",
+                title: "The integrated answer beats the specialist answer.",
+                body:
+                  "The biggest decisions sit at the intersection of strategy, finance, legal, and technology. The right answer is rarely one practice. It is the four practices working off the same brief.",
+              },
+            ].map((t, i) => (
+              <li
+                key={t.no}
+                className={styles.themeItem}
+                style={{ ["--stagger-i" as string]: i }}
+              >
+                <span className={styles.themeNo}>{t.no}</span>
+                <h3 className={styles.themeTitle}>{t.title}</h3>
+                <p className={styles.themeBody}>{t.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* FEATURED ENGAGEMENTS BY SECTOR */}
+      <section className="section section--bone-deep" aria-labelledby="featured-h">
+        <div className="container">
+          <header className={styles.featuredHeader}>
+            <span className="eyebrow">Recent work, by sector</span>
+            <h2 id="featured-h" className={styles.sectionHead}>
+              A glimpse of what we have shipped.
+            </h2>
+          </header>
+
+          <ul className={styles.engagements} data-reveal-stagger>
+            {[
+              {
+                sector: "Financial Services",
+                summary:
+                  "Compliance overhaul for a regional NBFC ahead of an RBI inspection. Cleared with zero observations.",
+              },
+              {
+                sector: "Manufacturing",
+                summary:
+                  "Operational transformation at a ₹200 Cr industrial group. EBITDA margin recovered 480 bps in 18 months.",
+              },
+              {
+                sector: "Family Business",
+                summary:
+                  "Succession charter and holding-structure redesign for a second-generation promoter group.",
+              },
+              {
+                sector: "Technology & SaaS",
+                summary:
+                  "Market entry and brand launch for a Series-A SaaS company. $0 → $2.1M ARR in 11 months.",
+              },
+              {
+                sector: "Real Estate",
+                summary:
+                  "₹400 Cr structured capital raise from an alternatives investor. Lender book reduced by 38%.",
+              },
+              {
+                sector: "Healthcare",
+                summary:
+                  "Regulatory and IP advisory for a diagnostics chain expanding into three new states.",
+              },
+            ].map((e, i) => (
+              <li
+                key={e.sector}
+                className={styles.engagement}
+                style={{ ["--stagger-i" as string]: i }}
+              >
+                <span className={styles.engagementSector}>{e.sector}</span>
+                <p className={styles.engagementSummary}>{e.summary}</p>
+                <Link href="/case-studies" className={styles.engagementLink}>
+                  Read case study →
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="section--tight" style={{ paddingBlock: "var(--space-9)" }}>
         <div className="container container--narrow" style={{ textAlign: "center" }}>
           <h2 className={styles.ctaHead}>Don&apos;t see your sector?</h2>

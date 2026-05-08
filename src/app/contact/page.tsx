@@ -166,6 +166,133 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* WHAT HAPPENS NEXT */}
+      <section className="section section--bone-deep" aria-labelledby="next-h">
+        <div className="container">
+          <header className={styles.nextHeader}>
+            <span className="eyebrow">What happens next</span>
+            <h2 id="next-h" className={styles.cardTitle}>
+              The first ten days from your email.
+            </h2>
+            <p className={styles.cardBody}>
+              We treat the first ten days like a real engagement, because they
+              are. The early signal is the same signal you will see for the
+              rest of the relationship.
+            </p>
+          </header>
+
+          <ol className={styles.next} data-reveal-stagger>
+            {[
+              {
+                window: "Within 1 working day",
+                title: "A partner reads your email.",
+                body:
+                  "Not an associate, not an inbox bot. The partner with the closest practice fit responds with whether the engagement is the right fit and what is missing.",
+              },
+              {
+                window: "Within 5 days",
+                title: "A 30-minute scoping call.",
+                body:
+                  "Your team and ours, on the same line. We listen for context and constraints. We do not pitch services we cannot ship.",
+              },
+              {
+                window: "Within 2 weeks",
+                title: "Sample diagnostic + proposal.",
+                body:
+                  "A short written diagnostic with three observations from a partner who has run engagements like yours, plus a fixed-fee proposal scoped to the actual need.",
+              },
+              {
+                window: "On signature",
+                title: "NDA, kickoff, calendar.",
+                body:
+                  "Master NDA in place. Kickoff scheduled within five working days. Weekly cadence and named partners on the engagement letter — not in the appendix.",
+              },
+            ].map((s, i) => (
+              <li
+                key={s.window}
+                className={styles.nextItem}
+                style={{ ["--stagger-i" as string]: i }}
+              >
+                <span className={styles.nextWindow}>{s.window}</span>
+                <h3 className={styles.nextTitle}>{s.title}</h3>
+                <p className={styles.nextBody}>{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ENGAGEMENT FORMATS */}
+      <section className="section" aria-labelledby="formats-h">
+        <div className="container">
+          <header className={styles.formatsHeader}>
+            <span className="eyebrow">Engagement Formats</span>
+            <h2 id="formats-h" className={styles.cardTitle}>
+              Three shapes the work usually takes.
+            </h2>
+          </header>
+
+          <div className={styles.formats} data-reveal-stagger>
+            {[
+              {
+                name: "Diagnostic",
+                length: "2 – 4 weeks",
+                price: "Fixed fee",
+                body:
+                  "A focused look at one constraint. Interviews, data work, and a written hypothesis. The cheapest way to find out whether we are the right partner.",
+                bullets: [
+                  "1 partner + 1 senior",
+                  "Written diagnostic ≤ 12 pages",
+                  "Roadmap with sequencing & cost",
+                ],
+              },
+              {
+                name: "Project",
+                length: "3 – 6 months",
+                price: "Milestone-billed",
+                body:
+                  "A defined transformation, scoped end-to-end. We co-deliver with your team against a written outcome and a calendar of milestones.",
+                bullets: [
+                  "Cross-practice when needed",
+                  "Weekly written cadence",
+                  "Outcome named in week one",
+                ],
+              },
+              {
+                name: "Retainer",
+                length: "Ongoing",
+                price: "Monthly, scoped",
+                body:
+                  "An always-on partner relationship. Scoped to a deliverable list, reviewed every quarter. We refuse retainers that exist to keep us on call.",
+                bullets: [
+                  "Named partner per practice",
+                  "Quarterly value review",
+                  "Cancel on 30 days written notice",
+                ],
+              },
+            ].map((f, i) => (
+              <article
+                key={f.name}
+                className={styles.format}
+                style={{ ["--stagger-i" as string]: i }}
+              >
+                <header className={styles.formatHead}>
+                  <h3 className={styles.formatName}>{f.name}</h3>
+                  <span className={styles.formatPrice}>{f.price}</span>
+                </header>
+                <span className={styles.formatLength}>{f.length}</span>
+                <p className={styles.formatBody}>{f.body}</p>
+                <ul className={styles.formatBullets}>
+                  {f.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section section--ink section--tight">
         <div className="container container--narrow" style={{ textAlign: "center" }}>
           <h2 className={styles.closingHead}>

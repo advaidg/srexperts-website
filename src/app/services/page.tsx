@@ -183,6 +183,121 @@ export default function ServicesPage() {
         </section>
       ))}
 
+      {/* PRICING & ENGAGEMENT PRINCIPLES */}
+      <section className="section section--bone-deep" aria-labelledby="pricing-h">
+        <div className="container">
+          <header className={styles.pricingHeader}>
+            <span className="eyebrow">Pricing & Engagement</span>
+            <h2 id="pricing-h" className={styles.sectionHead}>
+              How we charge — and what we will not do.
+            </h2>
+            <p className={styles.pricingIntro}>
+              The default is fixed-fee, milestone-billed, with a written
+              engagement letter that names the outcome. The exceptions are
+              listed below.
+            </p>
+          </header>
+
+          <ul className={styles.principles} data-reveal-stagger>
+            {[
+              {
+                title: "Fixed-fee where possible",
+                body:
+                  "Diagnostics and most projects are fixed-fee, billed against milestones. You know what the engagement costs before it starts.",
+              },
+              {
+                title: "Hourly, only where the work is genuinely open-ended",
+                body:
+                  "Litigation, regulatory disputes, and a small set of advisory mandates run on hourly rates with a not-to-exceed cap and weekly burn updates.",
+              },
+              {
+                title: "Retainers are scoped, not blank cheques",
+                body:
+                  "Monthly retainers come with a written deliverable list. We refuse retainers that exist to keep us on call.",
+              },
+              {
+                title: "No success fees on advisory",
+                body:
+                  "Capital raises and M&A carry transaction-linked fees as the market expects. We do not stack contingent fees on advisory work.",
+              },
+              {
+                title: "Quarterly value review",
+                body:
+                  "Every retained engagement gets a written review every quarter. If we are not earning the next quarter, we say so first.",
+              },
+              {
+                title: "Indian and cross-border tax-receipted",
+                body:
+                  "GST-compliant invoicing in INR. SGD and USD invoicing through the Singapore desk for cross-border engagements.",
+              },
+            ].map((p, i) => (
+              <li
+                key={p.title}
+                className={styles.principle}
+                style={{ ["--stagger-i" as string]: i }}
+              >
+                <h3 className={styles.principleTitle}>{p.title}</h3>
+                <p className={styles.principleBody}>{p.body}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* COMMON STARTING POINTS */}
+      <section className="section" aria-labelledby="starts-h">
+        <div className="container container--narrow">
+          <header className={styles.startsHeader}>
+            <span className="eyebrow">Common starting points</span>
+            <h2 id="starts-h" className={styles.sectionHead}>
+              Not sure which practice to start with?
+            </h2>
+            <p className={styles.pricingIntro}>
+              Most engagements begin with one of the following. The
+              cross-practice work follows naturally from there.
+            </p>
+          </header>
+
+          <dl className={styles.starts} data-reveal-stagger>
+            {[
+              {
+                q: "We are preparing for a funding round.",
+                a: "Start with Finance for diligence-readiness, then layer in Legal for the cap table and SHA, and Strategy for the investor narrative.",
+              },
+              {
+                q: "We have outgrown a single accountant.",
+                a: "Finance & CA Services. Often paired with a Virtual CFO retainer until you have hired the full-time finance leader.",
+              },
+              {
+                q: "We are entering a new market.",
+                a: "Strategy for the entry plan, Marketing & Growth for launch, Legal for the entity setup. The work is sequenced, not run in parallel.",
+              },
+              {
+                q: "Our compliance posture has fallen behind.",
+                a: "Legal & Regulatory diagnostic in week one. Remediation schedule by week three. Re-baselined controls within the quarter.",
+              },
+              {
+                q: "Our growth has plateaued.",
+                a: "Marketing & Growth for the demand side, Strategy for the offer side. We refuse engagements where only one of the two is in scope.",
+              },
+              {
+                q: "We are restructuring or carving out.",
+                a: "Strategy + Legal + Finance run as a single program. One brief. One steering committee. One report.",
+              },
+            ].map((s, i) => (
+              <div
+                key={s.q}
+                className={styles.start}
+                style={{ ["--stagger-i" as string]: i }}
+              >
+                <dt className={styles.startQ}>{s.q}</dt>
+                <dd className={styles.startA}>{s.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="section--tight" style={{ paddingBlock: "var(--space-9)" }}>
         <div className="container container--narrow" style={{ textAlign: "center" }}>

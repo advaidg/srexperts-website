@@ -95,6 +95,41 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
+      {/* HOW THESE READ */}
+      <section className="section section--tight section--bone-deep" aria-labelledby="howread-h">
+        <div className="container container--narrow">
+          <span className="eyebrow">How to read these</span>
+          <h2 id="howread-h" className={styles.sectionHead}>
+            Every case study has the same shape.
+          </h2>
+
+          <ol className={styles.shape}>
+            {[
+              {
+                key: "Context",
+                body:
+                  "What the client was facing. Sized in revenue, geography, or constraint — never in adjectives.",
+              },
+              {
+                key: "Intervention",
+                body:
+                  "What we did. Named so a peer in the same role could replicate the work, not so it sounds impressive.",
+              },
+              {
+                key: "Outcome",
+                body:
+                  "What changed in the client's business. Numbers where the engagement allows them, plain language where it does not.",
+              },
+            ].map((s) => (
+              <li key={s.key} className={styles.shapeItem}>
+                <span className={styles.shapeKey}>{s.key}</span>
+                <p className={styles.shapeBody}>{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       <section className="section" aria-labelledby="featured-h">
         <div className="container">
           <span className="eyebrow">Featured Engagements</span>
@@ -135,6 +170,62 @@ export default function CaseStudiesPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* MEASUREMENT FRAMEWORK */}
+      <section className="section section--bone-deep" aria-labelledby="measure-h">
+        <div className="container">
+          <header className={styles.measureHeader}>
+            <span className="eyebrow">How we measure success</span>
+            <h2 id="measure-h" className={styles.sectionHead}>
+              Outcomes the client can verify.
+            </h2>
+            <p className={styles.measureIntro}>
+              Every engagement defines its measure of success in week one.
+              No engagement closes until that measure is on the page in front
+              of both teams.
+            </p>
+          </header>
+
+          <ul className={styles.measure} data-reveal-stagger>
+            {[
+              {
+                no: "01",
+                title: "P&L impact",
+                body:
+                  "Margin recovered, cost taken out, revenue unlocked. Verifiable in the books, not in the deck.",
+              },
+              {
+                no: "02",
+                title: "Risk closed",
+                body:
+                  "Audit observation cleared, regulatory action averted, contract exposure removed. Documented and signed off.",
+              },
+              {
+                no: "03",
+                title: "Capability transferred",
+                body:
+                  "What the client can now do without us. Process owners named, dashboards live, runbooks written.",
+              },
+              {
+                no: "04",
+                title: "Decision velocity",
+                body:
+                  "Time from question to decision, before and after. The engagement is over when the cadence is faster than ours.",
+              },
+            ].map((m, i) => (
+              <li
+                key={m.no}
+                className={styles.measureItem}
+                style={{ ["--stagger-i" as string]: i }}
+              >
+                <span className={styles.measureNo}>{m.no}</span>
+                <h3 className={styles.measureTitle}>{m.title}</h3>
+                <p className={styles.measureBody}>{m.body}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
