@@ -16,6 +16,11 @@ export function Reveal() {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // Opt-in to hiding rules. Until this class is on <html>, every
+    // [data-reveal] / [data-reveal-stagger] element is fully visible.
+    // This guarantees that JS failure can never produce an empty page.
+    document.documentElement.classList.add("js-reveal");
+
     const targets = document.querySelectorAll<HTMLElement>(
       "[data-reveal], [data-reveal-stagger]",
     );

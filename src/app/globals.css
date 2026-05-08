@@ -296,9 +296,13 @@ svg {
   color: var(--color-paper);
 }
 
-/* — Reveal animations driven by Reveal.tsx — */
+/* — Reveal animations driven by Reveal.tsx —
+   These rules ONLY hide content when <html> has the .js-reveal class,
+   which Reveal.tsx adds on mount. If JS fails or is blocked, content
+   renders fully visible. The animations are progressive enhancement,
+   not a load-bearing dependency. */
 
-[data-reveal] {
+html.js-reveal [data-reveal] {
   opacity: 0;
   transform: translateY(28px);
   transition:
@@ -309,25 +313,25 @@ svg {
   will-change: opacity, transform, filter;
 }
 
-[data-reveal][data-reveal-shown="true"] {
+html.js-reveal [data-reveal][data-reveal-shown="true"] {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
 }
 
-[data-reveal="fade"] {
+html.js-reveal [data-reveal="fade"] {
   transform: none;
 }
 
-[data-reveal="rise-sm"] {
+html.js-reveal [data-reveal="rise-sm"] {
   transform: translateY(14px);
 }
 
-[data-reveal="rise-lg"] {
+html.js-reveal [data-reveal="rise-lg"] {
   transform: translateY(48px);
 }
 
-[data-reveal-stagger] > * {
+html.js-reveal [data-reveal-stagger] > * {
   opacity: 0;
   transform: translateY(20px);
   transition:
@@ -336,7 +340,7 @@ svg {
   transition-delay: calc(var(--stagger-i, 0) * 70ms);
 }
 
-[data-reveal-stagger][data-reveal-shown="true"] > * {
+html.js-reveal [data-reveal-stagger][data-reveal-shown="true"] > * {
   opacity: 1;
   transform: translateY(0);
 }
