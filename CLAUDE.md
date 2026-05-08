@@ -9,8 +9,9 @@ Tagline: **The Only Expert You Need.**
 - **Framework**: Next.js 15 (App Router) + React 19, TypeScript strict
 - **Styling**: Plain CSS with design tokens (no Tailwind). Editorial layouts, not utility-first grids.
 - **Fonts**: Syne (display) + DM Sans (body) via `next/font/google`
-- **Hosting**: Vercel
+- **Hosting**: GitHub Pages (static export, deployed by GitHub Actions on push to `main`)
 - **Forms**: `mailto:` only for v1 (no backend)
+- **Build mode**: `output: 'export'` — fully static. No server runtime, no Edge functions, no API routes.
 
 ## Brand tokens
 
@@ -56,6 +57,18 @@ Accent rule: **gold is rare.** Use it once per section at most. Navy on bone is 
 - Spacing scale via `--space-*` tokens. Never hardcode pixels in page files.
 - Components live in `src/components/`. One component per file.
 - Reusable copy data (services, industries) lives inline in the page file unless reused — keep it simple.
+
+## Static export constraints
+
+Because we deploy to GitHub Pages:
+
+- No `next/image` optimization (`images.unoptimized = true`). Use raw `<img>` or pre-optimized sources.
+- No `route.ts` handlers — no API routes, no `ImageResponse`. OG image and apple-icon are static PNGs in `public/`.
+- No `dynamic = "force-dynamic"` or `revalidate` — every page is built at compile time.
+- `metadata` is fine. `sitemap.ts` and `robots.ts` work but must export `dynamic = "force-static"`.
+- Trailing slashes are on (`trailingSlash: true`) so `/about` becomes `/about/index.html` which Pages serves cleanly.
+
+If you need a server feature (real form, dynamic OG, ISR), the migration target is Vercel — flip `output` off, drop `images.unoptimized`, restore the `headers()` block in `next.config.mjs`. The rest of the code is portable.
 
 ## What is intentionally NOT here in v1
 

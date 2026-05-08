@@ -23,24 +23,23 @@ Ship a credible, editorial v1 marketing site for SR Experts at the firm's owned 
 - [x] Security headers via `next.config.mjs`
 - [x] Local build verified (`npm install` + `next build`)
 
-### Phase 2 — Ship to Git + Vercel
+### Phase 2 — Ship to Git + GitHub Pages
 
 1. `git init` in `/Users/advaidgireesan/Documents/safal`
-2. Create empty GitHub repo `srexperts-website` (private)
-3. `git remote add origin <repo url>` and push `main`
-4. Import repo into Vercel (build command `next build`, output auto-detected)
-5. First deploy lands on a `*.vercel.app` preview URL — confirm everything renders
+2. Create GitHub repo `srexperts-website` and push `main`
+3. Repo Settings → Pages → Source: **GitHub Actions**
+4. `.github/workflows/deploy.yml` builds the static export and publishes to Pages on every push to `main`
+5. `.github/workflows/ci.yml` typechecks + builds on every PR
 
-### Phase 3 — Domain wiring
+### Phase 3 — Domain wiring (GoDaddy → GitHub Pages)
 
-User-supplied domain (already owned). Detailed steps in `DEPLOY.md`.
+`public/CNAME` already declares `srexperts.in`. Detailed steps in `DEPLOY.md`.
 
-1. In Vercel project → Settings → Domains → add the apex domain and `www`
-2. At the registrar, set DNS:
-   - Apex `@` → A record `76.76.21.21`
-   - `www` → CNAME `cname.vercel-dns.com`
-3. Wait for verification + automatic Let's Encrypt SSL (usually < 10 min)
-4. Set `NEXT_PUBLIC_SITE_URL` env var to `https://<domain>` and redeploy
+1. At GoDaddy DNS, set:
+   - Four `A` records on `@`: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - One `CNAME` on `www` pointing to `<github-username>.github.io`
+2. Remove the GoDaddy default parking `A` and `AAAA` records
+3. In repo Settings → Pages, confirm the DNS check turns green and tick **Enforce HTTPS**
 
 ### Phase 4 — Content + lead capture (post-launch, separate work)
 
@@ -69,7 +68,8 @@ User-supplied domain (already owned). Detailed steps in `DEPLOY.md`.
 
 ## Decision log
 
-- **Stack**: Next.js + MDX on Vercel — best fit for editorial premium feel, SEO, and one-click deploy
+- **Stack**: Next.js 16 with `output: 'export'` on GitHub Pages — free hosting on infra you already own, deploys via GitHub Actions
 - **No Tailwind**: editorial layouts read more naturally with hand-tuned CSS + design tokens. Utility-first classes encourage uniform corporate grids, which the brand explicitly rejects.
 - **Fonts**: Syne + DM Sans (from brand kit). The PDF mentions Canela/Tiempos as alternatives — brand kit is the source of truth.
-- **Mailto for v1**: ship faster, swap to a real form when there's volume.
+- **Mailto for v1**: GitHub Pages is static-only. Real form requires migrating to Vercel/Cloudflare Pages or adding a third-party form endpoint (Formspree, Web3Forms). Defer until volume warrants.
+- **OG image as static PNG**, not dynamic `ImageResponse`: Edge runtime not available on Pages. Regenerate manually with `rsvg-convert` if the design changes.

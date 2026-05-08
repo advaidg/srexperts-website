@@ -1,171 +1,144 @@
 # Deploy — SR Experts Website
 
-Target: **`srexperts.in`** (GoDaddy registrar) hosted on Vercel.
+Target: **`srexperts.in`** (GoDaddy registrar) hosted on **GitHub Pages**, deployed by GitHub Actions on every push to `main`.
+
+Repo: `https://github.com/advaidg/srexperts-website`
 
 ---
 
-## Step 0 — Prerequisites
+## Architecture
 
-You need:
-
-- A GitHub account with `gh` CLI authenticated (`gh auth status`)
-- A Vercel account ([vercel.com/signup](https://vercel.com/signup))
-- Access to the GoDaddy account that owns `srexperts.in`
-- Node.js 20+ locally
-
----
-
-## Step 1 — Push to GitHub
-
-From the project root:
-
-```bash
-git init
-git add .
-git commit -m "feat: initial SR Experts website"
-
-# create a private repo + push (requires gh CLI)
-gh repo create srexperts-website --private --source=. --remote=origin --push
+```
+push to main  →  GitHub Actions (.github/workflows/deploy.yml)
+              →  npm ci  →  next build  (output: 'export')
+              →  out/ artifact uploaded to Pages
+              →  served at srexperts.in
 ```
 
-If you don't have `gh` CLI installed, do it manually:
-
-1. Go to [github.com/new](https://github.com/new), create a private repo named `srexperts-website` (don't initialize with anything).
-2. Then:
-
-```bash
-git remote add origin https://github.com/<your-username>/srexperts-website.git
-git branch -M main
-git push -u origin main
-```
+The site is a fully static export. No server, no functions, no database. `mailto:` is the contact mechanism for v1.
 
 ---
 
-## Step 2 — Deploy to Vercel
+## Step 1 — Enable GitHub Pages on the repo (one time)
 
-1. Go to [vercel.com/new](https://vercel.com/new).
-2. **Import Git Repository** → pick `srexperts-website`.
-3. Framework preset: **Next.js** (auto-detected).
-4. Root directory: leave as `./`.
-5. Build command: `next build` (auto).
-6. Output directory: leave default.
-7. Click **Deploy**.
+1. Open `https://github.com/advaidg/srexperts-website/settings/pages`
+2. **Source** → select **"GitHub Actions"** (NOT "Deploy from a branch")
+3. Save.
 
-After ~1–2 min you'll get a preview URL like `srexperts-website-xxx.vercel.app`. Open it. Confirm:
-
-- Hero loads with animated headline
-- All 7 nav links work
-- `mailto:` link opens your mail client
+That's all. No branch picking, no folder picking. The Action defines the source.
 
 ---
 
-## Step 3 — Add the production domain in Vercel
+## Step 2 — Trigger the first deploy
 
-1. Vercel project → **Settings** → **Domains**.
-2. Enter `srexperts.in` → **Add**.
-3. Vercel asks how you want to set up DNS. Choose **"Add records to my existing DNS provider"**. It will show you the records to add.
-4. Also add `www.srexperts.in` and set it to redirect to the apex.
+The first push to `main` automatically runs the workflow.
+Watch it at `https://github.com/advaidg/srexperts-website/actions`.
 
-Vercel will display something like:
+If you want to retrigger manually: Actions → "Deploy to GitHub Pages" → **Run workflow**.
 
-| Type  | Name | Value                    |
-|-------|------|--------------------------|
-| A     | @    | `76.76.21.21`            |
-| CNAME | www  | `cname.vercel-dns.com`   |
-
-**Note the exact values Vercel shows you** — they occasionally rotate IPs. The values above are the current ones at the time of writing.
+When green, the site is live at the auto-issued GitHub Pages URL (something like `https://advaidg.github.io/srexperts-website/`). The next two steps move it to your real domain.
 
 ---
 
-## Step 4 — Add the records in GoDaddy
+## Step 3 — Tell GitHub Pages about the custom domain
 
-1. Sign in at [account.godaddy.com](https://account.godaddy.com).
-2. **My Products** → next to `srexperts.in` click **DNS** (or **Manage DNS**).
-3. You'll see a list of records. Edit the existing `A` record on `@` (the apex) and add a `CNAME` for `www`.
+The repo already has `public/CNAME` containing `srexperts.in`. GitHub Pages reads this on every deploy and treats it as the canonical custom domain.
+
+In `Settings → Pages`:
+- **Custom domain** field should auto-populate with `srexperts.in` after the first deploy. If not, type it in and click Save.
+- Wait for the **DNS check** to verify (it will fail until Step 4 is done).
+- Once green, tick **Enforce HTTPS** (auto Let's Encrypt cert).
+
+---
+
+## Step 4 — DNS records to add at GoDaddy
+
+Sign in at [account.godaddy.com](https://account.godaddy.com) → **My Products** → next to `srexperts.in` click **DNS** (or **Manage DNS**).
+
+GitHub Pages uses **four** apex `A` records (one per anycast IP), plus a `CNAME` for `www`.
 
 ### Records to add / edit
 
-**A record (apex domain → Vercel)**
+**Apex domain — four A records on `@`:**
 
-- Type: **A**
-- Name: **@**
-- Value: **76.76.21.21**
-- TTL: **600 seconds** (or 1 Hour)
+| Type | Name | Value             | TTL     |
+|------|------|-------------------|---------|
+| A    | `@`  | `185.199.108.153` | 600 sec |
+| A    | `@`  | `185.199.109.153` | 600 sec |
+| A    | `@`  | `185.199.110.153` | 600 sec |
+| A    | `@`  | `185.199.111.153` | 600 sec |
 
-If GoDaddy already has an `A` record on `@` pointing to a parking page, **edit** it; don't add a duplicate.
+GoDaddy stacks multiple A records for the same name — that's expected.
 
-**CNAME record (www → Vercel)**
+**`www` subdomain — one CNAME:**
 
-- Type: **CNAME**
-- Name: **www**
-- Value: **cname.vercel-dns.com**
-- TTL: **1 Hour**
+| Type  | Name  | Value                       | TTL    |
+|-------|-------|-----------------------------|--------|
+| CNAME | `www` | `advaidg.github.io`         | 1 Hour |
 
-GoDaddy ships with a default `CNAME www → @` — replace its **Data/Value** field with `cname.vercel-dns.com`.
+(Replace `advaidg` with your actual GitHub username if it ever changes. The value is **`<username>.github.io`** with no trailing dot, no protocol, no path.)
 
 ### Records to remove
 
-- **Any old `A` records** on `@` other than the new `76.76.21.21`
-- The default GoDaddy **parked page** records (`Parked` CNAMEs, `_domainconnect` is fine to leave)
-- Any leftover `AAAA` (IPv6) records on `@` from the parking page — Vercel handles IPv6 automatically; conflicting AAAAs will break verification
+- The default GoDaddy `A @ Parked` record
+- Any `AAAA` (IPv6) record on `@` from the parking page — leftover AAAAs that don't match GitHub's IPv6 range cause the domain check to fail
+- The default `CNAME www → @` — replace its **Value** with `advaidg.github.io`
+- Any other `A` records on `@` you didn't add
 
 ### Records to leave alone
 
 - `MX` records (email)
-- `TXT` records you didn't add (Google Workspace, etc.)
-- The `_domainconnect` `CNAME` — GoDaddy uses this for its own automation, harmless
+- Any `TXT` records you didn't add (e.g. Google Workspace verification)
+- The `_domainconnect` CNAME — GoDaddy automation, harmless
 
-Click **Save**.
-
----
-
-## Step 5 — Wait for verification + SSL
-
-1. Back in Vercel → Domains, you'll see `srexperts.in` go from **Invalid Configuration** to **Valid Configuration** within 5–60 minutes (usually ~10 min).
-2. Vercel auto-issues a Let's Encrypt SSL certificate. Once issued, the domain shows a green checkmark.
-3. Visit `https://srexperts.in` — site should load.
-
-If after an hour it's still pending:
-
-- Run `dig srexperts.in +short` — should return `76.76.21.21`
-- Run `dig www.srexperts.in +short` — should return `cname.vercel-dns.com.` then a Vercel IP
-- If wrong values: GoDaddy DNS hasn't propagated yet. Wait, then check again. TTL of 600s means up to 10 min.
+Click **Save**. TTL is 600s, so propagation lands in ~10 min.
 
 ---
 
-## Step 6 — Set the production env vars
+## Step 5 — Verify
 
-In Vercel → Settings → **Environment Variables**, add (Production scope):
+1. `dig srexperts.in +short` should return all four `185.199.10x.153` IPs.
+2. `dig www.srexperts.in +short` should chain to `advaidg.github.io.` then GitHub IPs.
+3. Back in `Settings → Pages`, the **DNS check** turns green.
+4. Tick **Enforce HTTPS**. SSL cert issues in a few minutes.
+5. Visit `https://srexperts.in` — site should load.
 
-| Key                          | Value                       |
-|------------------------------|-----------------------------|
-| `NEXT_PUBLIC_SITE_URL`       | `https://srexperts.in`      |
-| `NEXT_PUBLIC_CONTACT_EMAIL`  | `hello@srexperts.in`        |
-
-Then **Deployments → ... → Redeploy** the most recent build so it picks them up. This makes canonical URLs, sitemap, and JSON-LD point at the live domain.
-
----
-
-## Step 7 — Post-deploy checks
-
-- [ ] `https://srexperts.in` redirects from `http://` to `https://` (Vercel automatic)
-- [ ] `https://www.srexperts.in` redirects to apex (Vercel automatic if you set the redirect in Step 3)
-- [ ] `https://srexperts.in/sitemap.xml` lists all 7 pages
-- [ ] `https://srexperts.in/robots.txt` is reachable
-- [ ] OG image preview works — paste the URL into [opengraph.xyz](https://opengraph.xyz)
-- [ ] Lighthouse mobile + desktop, expect 95+ on Performance / 100 on SEO
-- [ ] `mailto:` link works on the Contact page
-- [ ] Submit the sitemap in [Google Search Console](https://search.google.com/search-console)
+If after an hour Pages still says "DNS check failed":
+- Open `https://dnschecker.org/?query=srexperts.in&type=A` — confirm all four IPs appear globally.
+- If only some checkers see it, GoDaddy hasn't propagated yet — wait.
+- If none, your GoDaddy save didn't go through — re-check the records.
 
 ---
 
-## Quick reference — what you literally type into GoDaddy
-
-Open `srexperts.in` → DNS Management → set/edit:
+## Quick reference — what to literally type into GoDaddy
 
 ```
-A      @     76.76.21.21        600
-CNAME  www   cname.vercel-dns.com   1 Hour
+A      @     185.199.108.153    600
+A      @     185.199.109.153    600
+A      @     185.199.110.153    600
+A      @     185.199.111.153    600
+CNAME  www   advaidg.github.io  1 Hour
 ```
 
-That's it. Everything else stays as-is (or gets removed if it's the default parking page).
+Delete anything else on `@` and on `www` that GoDaddy added by default.
+
+---
+
+## Day-to-day workflow
+
+- **Local dev**: `npm run dev` → http://localhost:3000
+- **Open a PR**: `.github/workflows/ci.yml` runs typecheck + build on each PR
+- **Merge to `main`**: `.github/workflows/deploy.yml` builds and deploys to Pages automatically
+- **Need a manual deploy**: Actions tab → "Deploy to GitHub Pages" → Run workflow
+
+---
+
+## Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| Action fails on `actions/deploy-pages` | Pages source isn't "GitHub Actions" — fix in Settings → Pages |
+| Site loads but CSS/JS 404 | `CNAME` got deleted from `public/` — restore and redeploy |
+| DNS check stuck on "failed" after 1 hr | Old `AAAA` records still on `@` from GoDaddy parking — delete them |
+| `Enforce HTTPS` is greyed out | DNS check must pass first; wait for green |
+| Custom domain auto-removed after deploy | `public/CNAME` was missing in `out/`. Confirm the file exists in the repo |
