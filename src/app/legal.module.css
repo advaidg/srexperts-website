@@ -1,0 +1,77 @@
+.hero {
+  padding-block: clamp(5rem, 4rem + 6vw, 9rem) clamp(1.5rem, 1rem + 2vw, 3rem);
+}
+
+.heroHead {
+  margin-block: 1rem 1.5rem;
+  max-width: 22ch;
+}
+
+.heroBody {
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  color: var(--color-ink);
+  max-width: 60ch;
+}
+
+.body {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 70ch;
+}
+
+.body section {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.body h2 {
+  font-family: var(--font-syne);
+  font-size: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
+  letter-spacing: -0.012em;
+  color: var(--color-navy);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.body p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-ink);
+  margin: 0;
+  max-width: none;
+}
+
+.body ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.body li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-ink);
+}
+
+.body li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 12px;
+  height: 1.5px;
+  background: var(--color-gold);
+}
+
+.meta {
+  font-size: 0.875rem;
+  color: var(--color-mist);
+  border-top: 1px solid var(--color-line);
+  padding-top: 1.25rem;
+  margin-top: 1rem;
+}

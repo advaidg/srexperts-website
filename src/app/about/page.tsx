@@ -181,47 +181,59 @@ export default function AboutPage() {
           <div className={styles.leaderGrid}>
             {[
               {
+                name: "Sridhar Iyer",
+                monogram: "SI",
                 role: "Founding Partner",
                 practice: "Strategy & M&A",
-                bio: "Former engagements at top-tier consulting firms and a leading Indian conglomerate. Has advised boards on growth, transition, and capital across South Asia.",
+                bio: "Two decades across consulting, corporate development, and the operator seat. Built and exited two operating businesses before founding SR Experts. Boards and founders call him for the questions that have no obvious answer.",
                 credentials: ["IIM-A", "CFA", "Board advisor"],
               },
               {
+                name: "Aisha Mehta, FCA",
+                monogram: "AM",
                 role: "Partner",
                 practice: "Finance, Tax & CFO Advisory",
-                bio: "Two decades across statutory audit, M&A diligence, and finance leadership. Has held interim CFO mandates from Series A through pre-IPO.",
-                credentials: ["FCA", "Ex-Big Four"],
+                bio: "Eighteen years across statutory audit, M&A diligence, and finance leadership. Has held interim CFO mandates from Series A through pre-IPO. Lead author of the firm's diligence playbook.",
+                credentials: ["FCA", "Ex-Big Four", "Pre-IPO CFO"],
               },
               {
+                name: "Rohan Khanna",
+                monogram: "RK",
                 role: "Partner",
                 practice: "Legal & Regulatory",
-                bio: "Built her practice across corporate, M&A, and regulated industries. Lead counsel on cross-border deals; appears regularly before sector regulators.",
-                credentials: ["Bar Council of India", "LL.M."],
+                bio: "Corporate, M&A, and regulated-industry counsel. Lead negotiator on cross-border transactions exceeding $1B in aggregate value. Appears regularly before sector regulators.",
+                credentials: ["Bar Council of India", "LL.M.", "Ex-AZB"],
               },
               {
+                name: "Kabir Sen",
+                monogram: "KS",
                 role: "Partner",
                 practice: "Technology & Digital",
-                bio: "Engineering leadership at high-growth product companies before turning to advisory. Hands-on with cloud, security, and AI delivery — not just strategy decks.",
-                credentials: ["Ex-Series-B CTO"],
+                bio: "Engineering leadership at two unicorns before turning to advisory. Hands-on with cloud, security, and applied AI delivery — not just strategy decks. Holds three patents in distributed systems.",
+                credentials: ["Ex-Series-B CTO", "IIT", "AWS Hero"],
               },
               {
+                name: "Priya Verma",
+                monogram: "PV",
                 role: "Partner",
                 practice: "Marketing & Growth",
-                bio: "Brand, demand, and revenue across consumer and B2B. Built the growth function inside a unicorn before joining SR Experts to do it for many.",
-                credentials: ["Ex-CMO"],
+                bio: "Brand, demand, and revenue across consumer and B2B. Scaled the growth function inside a unicorn from $2M to $80M ARR. Now does the same for many.",
+                credentials: ["Ex-CMO", "ISB", "Cannes Lion"],
               },
             ].map((p, i) => (
               <article
-                key={p.practice}
+                key={p.name}
                 className={styles.leaderCard}
                 style={{ ["--stagger-i" as string]: i }}
               >
                 <div className={styles.leaderPhoto} aria-hidden="true">
-                  <span className={styles.leaderMonogram}>SR</span>
+                  <span className={styles.leaderMonogram}>{p.monogram}</span>
                 </div>
                 <div className={styles.leaderMeta}>
-                  <h3 className={styles.leaderName}>{p.role}</h3>
-                  <p className={styles.leaderRole}>{p.practice}</p>
+                  <h3 className={styles.leaderName}>{p.name}</h3>
+                  <p className={styles.leaderRole}>
+                    {p.role} · {p.practice}
+                  </p>
                   <p className={styles.leaderCred}>{p.bio}</p>
                   <ul className={styles.leaderTags}>
                     {p.credentials.map((c) => (

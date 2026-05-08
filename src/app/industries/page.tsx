@@ -14,42 +14,56 @@ const SECTORS = [
     name: "Financial Services",
     body:
       "Banks, NBFCs, fintech, asset management, insurance, and the regulated entities that depend on precision.",
+    engagements: "28",
+    focus: "Compliance · Capital · Risk",
   },
   {
     no: "02",
     name: "Real Estate & Construction",
     body:
       "Developers, REITs, property funds, and infrastructure businesses navigating capital, compliance, and growth.",
+    engagements: "14",
+    focus: "Capital · Structuring",
   },
   {
     no: "03",
     name: "Technology & SaaS",
     body:
       "Founders building products, enterprises transforming operations, and the businesses scaling on digital infrastructure.",
+    engagements: "22",
+    focus: "Growth · Architecture",
   },
   {
     no: "04",
     name: "Manufacturing & Industrials",
     body:
       "Family businesses professionalizing, mid-market manufacturers expanding, and industrial groups restructuring for the next decade.",
+    engagements: "19",
+    focus: "Operations · Succession",
   },
   {
     no: "05",
     name: "Retail & Consumer",
     body:
       "Brands building demand, retailers navigating omnichannel, and consumer businesses competing in fragmented markets.",
+    engagements: "12",
+    focus: "Demand · Channel",
   },
   {
     no: "06",
     name: "Healthcare & Life Sciences",
     body:
       "Hospitals, diagnostics, pharma, and the regulated businesses where compliance and growth must move together.",
+    engagements: "11",
+    focus: "Regulation · Expansion",
   },
   {
     no: "07",
     name: "Professional Services",
     body:
       "Law firms, consultancies, and partnerships looking to operate with the discipline of an enterprise.",
+    engagements: "9",
+    focus: "Governance · Tech",
   },
 ];
 
@@ -88,9 +102,15 @@ export default function IndustriesPage() {
                 className={styles.card}
                 style={{ ["--stagger-i" as string]: i }}
               >
-                <span className={styles.cardNo}>{s.no}</span>
+                <header className={styles.cardHead}>
+                  <span className={styles.cardNo}>{s.no}</span>
+                  <span className={styles.cardEngagements}>
+                    {s.engagements} engagements
+                  </span>
+                </header>
                 <h3 className={styles.cardTitle}>{s.name}</h3>
                 <p className={styles.cardBody}>{s.body}</p>
+                <p className={styles.cardFocus}>{s.focus}</p>
               </article>
             ))}
           </div>

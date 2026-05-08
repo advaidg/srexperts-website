@@ -170,6 +170,37 @@
   max-width: 50ch;
 }
 
+.recent {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-bone-deep);
+  border-left: 2px solid var(--color-gold);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.recentLabel {
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.recentOutcome {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin: 0;
+  max-width: 50ch;
+}
+
+.recentOutcome strong {
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
 /* PRICING PRINCIPLES */
 .pricingHeader,
 .startsHeader {

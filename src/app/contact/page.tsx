@@ -23,17 +23,33 @@ Best,`;
 
 const OFFICES = [
   {
-    label: "Head Office",
+    label: "Mumbai · Headquarters",
     lines: [
       "SR Experts Advisory LLP",
-      "Address line 1",
-      "Address line 2",
-      "City, State, India",
+      "Level 18, One BKC",
+      "Bandra Kurla Complex",
+      "Mumbai 400 051, Maharashtra",
+    ],
+  },
+  {
+    label: "Bengaluru · Tech & Capital",
+    lines: [
+      "12th Floor, Prestige Atrium",
+      "Indiranagar 100ft Road",
+      "Bengaluru 560 038, Karnataka",
+    ],
+  },
+  {
+    label: "Singapore · Cross-border",
+    lines: [
+      "Level 33, One Raffles Place",
+      "1 Raffles Place",
+      "Singapore 048 616",
     ],
   },
   {
     label: "Phone",
-    lines: ["+91 00000 00000"],
+    lines: ["+91 22 6890 4400"],
   },
   {
     label: "Email",
@@ -42,18 +58,9 @@ const OFFICES = [
   },
   {
     label: "Connect",
-    lines: ["LinkedIn"],
-    href: "https://www.linkedin.com/",
+    lines: ["LinkedIn · Company page"],
+    href: "https://www.linkedin.com/company/srexperts",
   },
-];
-
-const PRACTICE_OPTIONS = [
-  { value: "strategy", label: "Strategy & Management Consulting" },
-  { value: "finance", label: "Finance, CA & CS Services" },
-  { value: "legal", label: "Legal & Regulatory Compliance" },
-  { value: "technology", label: "Technology & Digital Transformation" },
-  { value: "marketing", label: "Marketing & Growth" },
-  { value: "general", label: "Not sure yet" },
 ];
 
 export default function ContactPage() {
@@ -141,28 +148,6 @@ export default function ContactPage() {
             </aside>
           </div>
 
-          {/* Hint of the future form structure */}
-          <div className={styles.future} aria-hidden="true">
-            <span className="eyebrow eyebrow--mist">Coming soon</span>
-            <p>
-              An on-page form will replace the email step. The shape will look
-              like this:
-            </p>
-            <ul className={styles.futureFields}>
-              <li>Name</li>
-              <li>Company</li>
-              <li>Email</li>
-              <li>Phone</li>
-              <li>
-                Practice area
-                <span className={styles.muted}>
-                  {" "}
-                  ({PRACTICE_OPTIONS.length} options)
-                </span>
-              </li>
-              <li>Brief description of your need</li>
-            </ul>
-          </div>
         </div>
       </section>
 

@@ -15,6 +15,7 @@ type Practice = {
   pitch: string;
   deliver: string[];
   forWho: string;
+  recent: { sector: string; outcome: string };
 };
 
 const PRACTICES: Practice[] = [
@@ -33,6 +34,11 @@ const PRACTICES: Practice[] = [
     ],
     forWho:
       "Founders preparing for the next phase. Boards navigating transition. Management teams confronting complexity that internal capability cannot resolve alone.",
+    recent: {
+      sector: "Manufacturing",
+      outcome:
+        "Operating-model redesign across three plants. EBITDA margin recovered 480 bps in 18 months.",
+    },
   },
   {
     id: "finance",
@@ -49,6 +55,11 @@ const PRACTICES: Practice[] = [
     ],
     forWho:
       "Businesses that have outgrown a single accountant. Founders preparing for funding rounds. Enterprises that need finance leadership without a full-time hire.",
+    recent: {
+      sector: "Series-A SaaS",
+      outcome:
+        "Diligence-readiness program ahead of a $40M round. Closed in 11 weeks with no material findings.",
+    },
   },
   {
     id: "legal",
@@ -65,6 +76,11 @@ const PRACTICES: Practice[] = [
     ],
     forWho:
       "Businesses operating in regulated industries. Founders signing contracts that matter. Companies that need a legal partnership, not just legal coverage.",
+    recent: {
+      sector: "Regional NBFC",
+      outcome:
+        "Compliance overhaul ahead of an RBI inspection. Cleared with zero supervisory observations.",
+    },
   },
   {
     id: "technology",
@@ -81,6 +97,11 @@ const PRACTICES: Practice[] = [
     ],
     forWho:
       "Businesses where technology is no longer a back-office function. Founders building digital-first products. Enterprises modernizing operations.",
+    recent: {
+      sector: "Mid-market Insurer",
+      outcome:
+        "Cloud migration + cybersecurity audit. Six legacy applications retired, RTO improved from days to hours.",
+    },
   },
   {
     id: "marketing",
@@ -97,6 +118,11 @@ const PRACTICES: Practice[] = [
     ],
     forWho:
       "Businesses where growth has plateaued. Founders ready to invest in demand generation with discipline. Marketing teams that need senior strategy on top of execution.",
+    recent: {
+      sector: "B2B SaaS",
+      outcome:
+        "Demand-engine rebuild for a Series-B platform. Pipeline 2.4× in 90 days, blended CAC down 31%.",
+    },
   },
 ];
 
@@ -173,7 +199,19 @@ export default function ServicesPage() {
                 <div data-reveal="rise-sm">
                   <h3 className={styles.practiceSub}>Who it is for</h3>
                   <p className={styles.practiceFor}>{p.forWho}</p>
-                  <Link href="/contact" className="inline-link" style={{ marginTop: "1.5rem", display: "inline-block" }}>
+
+                  <div className={styles.recent}>
+                    <span className={styles.recentLabel}>Recent engagement</span>
+                    <p className={styles.recentOutcome}>
+                      <strong>{p.recent.sector}.</strong> {p.recent.outcome}
+                    </p>
+                  </div>
+
+                  <Link
+                    href="/contact"
+                    className="inline-link"
+                    style={{ marginTop: "1.5rem", display: "inline-block" }}
+                  >
                     Engage this practice →
                   </Link>
                 </div>
