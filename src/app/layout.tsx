@@ -3,7 +3,6 @@ import { Syne, DM_Sans } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StructuredData } from "@/components/StructuredData";
-import { Reveal } from "@/components/Reveal";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { CursorAccent } from "@/components/CursorAccent";
 import { SITE } from "@/lib/site";
@@ -126,7 +125,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <StructuredData />
-        <Reveal />
         <ScrollProgress />
         <CursorAccent />
         <Header />

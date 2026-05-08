@@ -89,9 +89,9 @@ export default function InsightsPage() {
             <span>Chapter · 06 / 07 · Insights</span>
             <span aria-hidden="true">FIELD NOTES</span>
           </div>
-          <span className="eyebrow" data-reveal="fade">Insights</span>
-          <h1 className={styles.heroHead} data-reveal>Perspectives from the practice.</h1>
-          <p className={styles.heroBody} data-reveal="rise-sm">
+          <span className="eyebrow">Insights</span>
+          <h1 className={styles.heroHead}>Perspectives from the practice.</h1>
+          <p className={styles.heroBody}>
             Analysis, frameworks, and field notes from our partners. Written
             for operators, not for awards.
           </p>
@@ -102,7 +102,7 @@ export default function InsightsPage() {
         <div className="container">
           <span className="eyebrow">Content Categories</span>
           <h2 className={styles.sectionHead}>What we write about.</h2>
-          <ul className={styles.tagRow} data-reveal-stagger>
+          <ul className={styles.tagRow}>
             {CATEGORIES.map((c, i) => (
               <li
                 key={c.tag}
@@ -125,7 +125,7 @@ export default function InsightsPage() {
             The argument we keep coming back to.
           </h2>
 
-          <article className={styles.featured} data-reveal>
+          <article className={styles.featured}>
             <div className={styles.featuredMeta}>
               <span className={styles.featuredTag}>{ARTICLES[0].category}</span>
               <span>{ARTICLES[0].date}</span>
@@ -156,7 +156,7 @@ export default function InsightsPage() {
             </p>
           </header>
 
-          <ul className={styles.articles} data-reveal-stagger>
+          <ul className={styles.articles}>
             {ARTICLES.slice(1).map((a, i) => (
               <li
                 key={a.title}

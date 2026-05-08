@@ -72,9 +72,9 @@ export default function ContactPage() {
             <span>Chapter · 07 / 07 · Contact</span>
             <span aria-hidden="true">PARTNER-DIRECT · WITHIN 1 WORKING DAY</span>
           </div>
-          <span className="eyebrow" data-reveal="fade">Contact</span>
-          <h1 className={styles.heroHead} data-reveal>Let us understand the problem first.</h1>
-          <p className={styles.heroBody} data-reveal="rise-sm">
+          <span className="eyebrow">Contact</span>
+          <h1 className={styles.heroHead}>Let us understand the problem first.</h1>
+          <p className={styles.heroBody}>
             Every engagement at SR Experts begins with a conversation. No pitch
             deck, no preamble. Tell us what you are facing, and we will tell
             you whether we are the right partner to help.
@@ -166,7 +166,7 @@ export default function ContactPage() {
             </p>
           </header>
 
-          <ol className={styles.next} data-reveal-stagger>
+          <ol className={styles.next}>
             {[
               {
                 window: "Within 1 working day",
@@ -217,7 +217,7 @@ export default function ContactPage() {
             </h2>
           </header>
 
-          <div className={styles.formats} data-reveal-stagger>
+          <div className={styles.formats}>
             {[
               {
                 name: "Diagnostic",

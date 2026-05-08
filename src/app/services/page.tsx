@@ -136,11 +136,11 @@ export default function ServicesPage() {
             <span>Chapter · 03 / 07 · Services</span>
             <span aria-hidden="true">FIVE PRACTICES · ONE PARTNERSHIP</span>
           </div>
-          <span className="eyebrow" data-reveal="fade">Services</span>
-          <h1 className={styles.heroHead} data-reveal>
+          <span className="eyebrow">Services</span>
+          <h1 className={styles.heroHead}>
             Five practices. One partnership.
           </h1>
-          <p className={styles.heroBody} data-reveal="rise-sm">
+          <p className={styles.heroBody}>
             SR Experts delivers integrated advisory across the five disciplines
             that determine whether a business scales, stalls, or stumbles.
             Engage one practice or all five. The work is coordinated either
@@ -150,7 +150,7 @@ export default function ServicesPage() {
 
         {/* index list */}
         <div className={`container ${styles.indexWrap}`}>
-          <ol className={styles.index} data-reveal-stagger>
+          <ol className={styles.index}>
             {PRACTICES.map((p, i) => (
               <li key={p.id} style={{ ["--stagger-i" as string]: i }}>
                 <a href={`#${p.id}`} className={styles.indexLink}>
@@ -176,7 +176,7 @@ export default function ServicesPage() {
         >
           <div className="container">
             <div className={styles.practiceGrid}>
-              <header className={styles.practiceHeader} data-reveal>
+              <header className={styles.practiceHeader}>
                 <span className={styles.practiceNo}>{p.no}</span>
                 <h2 id={`${p.id}-h`} className={styles.practiceTitle}>
                   {p.title}
@@ -185,9 +185,9 @@ export default function ServicesPage() {
               </header>
 
               <div className={styles.practiceBody}>
-                <div data-reveal="rise-sm">
+                <div>
                   <h3 className={styles.practiceSub}>What we deliver</h3>
-                  <ul className={styles.deliverList} data-reveal-stagger>
+                  <ul className={styles.deliverList}>
                     {p.deliver.map((item, i) => (
                       <li key={item} style={{ ["--stagger-i" as string]: i }}>
                         {item}
@@ -196,7 +196,7 @@ export default function ServicesPage() {
                   </ul>
                 </div>
 
-                <div data-reveal="rise-sm">
+                <div>
                   <h3 className={styles.practiceSub}>Who it is for</h3>
                   <p className={styles.practiceFor}>{p.forWho}</p>
 
@@ -236,7 +236,7 @@ export default function ServicesPage() {
             </p>
           </header>
 
-          <ul className={styles.principles} data-reveal-stagger>
+          <ul className={styles.principles}>
             {[
               {
                 title: "Fixed-fee where possible",
@@ -296,7 +296,7 @@ export default function ServicesPage() {
             </p>
           </header>
 
-          <dl className={styles.starts} data-reveal-stagger>
+          <dl className={styles.starts}>
             {[
               {
                 q: "We are preparing for a funding round.",

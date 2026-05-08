@@ -296,57 +296,6 @@ svg {
   color: var(--color-paper);
 }
 
-/* — Reveal animations driven by Reveal.tsx —
-   These rules ONLY hide content when <html> has the .js-reveal class,
-   which Reveal.tsx adds on mount. If JS fails or is blocked, content
-   renders fully visible. The animations are progressive enhancement,
-   not a load-bearing dependency. */
-
-html.js-reveal [data-reveal] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 900ms var(--ease-out),
-    transform 900ms var(--ease-out),
-    filter 900ms var(--ease-out);
-  filter: blur(6px);
-  will-change: opacity, transform, filter;
-}
-
-html.js-reveal [data-reveal][data-reveal-shown="true"] {
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-}
-
-html.js-reveal [data-reveal="fade"] {
-  transform: none;
-}
-
-html.js-reveal [data-reveal="rise-sm"] {
-  transform: translateY(14px);
-}
-
-html.js-reveal [data-reveal="rise-lg"] {
-  transform: translateY(48px);
-}
-
-html.js-reveal [data-reveal-stagger] > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 700ms var(--ease-out),
-    transform 700ms var(--ease-out);
-  transition-delay: calc(var(--stagger-i, 0) * 70ms);
-}
-
-html.js-reveal [data-reveal-stagger][data-reveal-shown="true"] > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Items can opt-in to a per-row delay via inline style: --stagger-i */
-
 /* — Atmospheric grain (data-uri SVG noise) — */
 
 .grain {

@@ -43,19 +43,19 @@ export default function AboutPage() {
             <span>Chapter · 02 / 07 · About</span>
             <span aria-hidden="true">EST · 2026</span>
           </div>
-          <span className="eyebrow" data-reveal="fade">
+          <span className="eyebrow">
             About
           </span>
-          <h1 className={styles.heroHead} data-reveal>
+          <h1 className={styles.heroHead}>
             Built for the businesses the big firms forgot.
           </h1>
-          <p className={styles.heroBody} data-reveal="rise-sm">
+          <p className={styles.heroBody}>
             SR Experts was founded on a simple observation. The advisory market
             is broken for everyone outside the Fortune 500. Boutique firms lack
             breadth. Big Four firms lack interest. Mid-market businesses are
             left navigating critical decisions with fragmented support.
           </p>
-          <p className={styles.heroBodyEm} data-reveal="rise-sm">
+          <p className={styles.heroBodyEm}>
             We built SR Experts to close that gap.
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function AboutPage() {
             </h2>
           </header>
 
-          <ol className={styles.timeline} data-reveal-stagger>
+          <ol className={styles.timeline}>
             {[
               {
                 year: "2024",
@@ -123,7 +123,7 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <dl className={styles.principles} data-reveal-stagger>
+          <dl className={styles.principles}>
             {PHILOSOPHY.map((p, i) => (
               <div
                 key={p.word}
@@ -254,7 +254,7 @@ export default function AboutPage() {
           <h2 id="numbers-h" className={styles.numbersHead}>
             What we have done so far.
           </h2>
-          <dl className={styles.numbers} data-reveal-stagger>
+          <dl className={styles.numbers}>
             {NUMBERS.map((n, i) => (
               <div
                 key={n.label}
@@ -281,7 +281,7 @@ export default function AboutPage() {
             </h2>
           </header>
 
-          <div className={styles.offices} data-reveal-stagger>
+          <div className={styles.offices}>
             {[
               {
                 city: "Mumbai",

@@ -76,11 +76,11 @@ export default function IndustriesPage() {
             <span>Chapter · 04 / 07 · Industries</span>
             <span aria-hidden="true">SEVEN SECTORS</span>
           </div>
-          <span className="eyebrow" data-reveal="fade">Industries</span>
-          <h1 className={styles.heroHead} data-reveal>
+          <span className="eyebrow">Industries</span>
+          <h1 className={styles.heroHead}>
             Sector-specific expertise. <em>Cross-sector perspective.</em>
           </h1>
-          <p className={styles.heroBody} data-reveal="rise-sm">
+          <p className={styles.heroBody}>
             The best advisors bring two things at once. Deep knowledge of your
             industry, and the pattern recognition that comes from working
             across many. SR Experts is built for both.
@@ -95,7 +95,7 @@ export default function IndustriesPage() {
             Seven sectors. One partnership.
           </h2>
 
-          <div className={styles.grid} data-reveal-stagger>
+          <div className={styles.grid}>
             {SECTORS.map((s, i) => (
               <article
                 key={s.no}
@@ -131,7 +131,7 @@ export default function IndustriesPage() {
             </p>
           </header>
 
-          <ol className={styles.themes} data-reveal-stagger>
+          <ol className={styles.themes}>
             {[
               {
                 no: "01",
@@ -176,7 +176,7 @@ export default function IndustriesPage() {
             </h2>
           </header>
 
-          <ul className={styles.engagements} data-reveal-stagger>
+          <ul className={styles.engagements}>
             {[
               {
                 sector: "Financial Services",

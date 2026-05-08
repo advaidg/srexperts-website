@@ -165,7 +165,7 @@ export default function HomePage() {
 
         <div className={styles.heroBody}>
           <div>
-            <span className={`eyebrow ${styles.heroEyebrow}`} data-reveal="fade">
+            <span className={`eyebrow ${styles.heroEyebrow}`}>
               Integrated Advisory
             </span>
             <h1
@@ -176,15 +176,15 @@ export default function HomePage() {
               <AnimatedHeadline line1="The Only Expert" line2="You Need." />
             </h1>
 
-            <p className={styles.heroSub} data-reveal="rise-sm">
+            <p className={styles.heroSub}>
               Strategy, finance, legal, technology, and marketing, delivered by
               one firm. Built for the businesses that built India.
             </p>
-            <p className={styles.heroSupport} data-reveal="rise-sm">
+            <p className={styles.heroSupport}>
               The depth of a Big Four. The agility of a partner who actually
               picks up the phone.
             </p>
-            <div className={styles.heroCtas} data-reveal="rise-sm">
+            <div className={styles.heroCtas}>
               <Link href="/contact" className="btn btn--primary">
                 Book a Discovery Call
                 <span className="btn-arrow" aria-hidden="true">
@@ -197,7 +197,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <aside className={styles.heroCard} data-reveal aria-hidden="true">
+          <aside className={styles.heroCard} aria-hidden="true">
             <div className={styles.heroCardTop}>
               <span>Engagement Profile</span>
               <em>Active</em>
@@ -261,13 +261,13 @@ export default function HomePage() {
       {/* PROBLEM */}
       <section className="section section--bone-deep" aria-labelledby="problem-h">
         <div className="container container--narrow">
-          <span className="eyebrow" data-reveal="fade">
+          <span className="eyebrow">
             The Problem We Solve
           </span>
-          <h2 id="problem-h" className={styles.problemHead} data-reveal>
+          <h2 id="problem-h" className={styles.problemHead}>
             World-class advisory was reserved for the Fortune 500.
           </h2>
-          <div className={styles.problemBody} data-reveal="rise-sm">
+          <div className={styles.problemBody}>
             <p>
               For decades, mid-market and growing businesses were left to
               stitch together fragmented advice from a dozen vendors — each
@@ -298,7 +298,7 @@ export default function HomePage() {
             </Link>
           </header>
 
-          <ol className={styles.serviceList} data-reveal-stagger>
+          <ol className={styles.serviceList}>
             {SERVICES.map((s, i) => (
               <li key={s.no} style={{ ["--stagger-i" as string]: i }}>
                 <Link href={s.href} className={styles.serviceRow}>
@@ -333,7 +333,7 @@ export default function HomePage() {
             </p>
           </header>
 
-          <div className={styles.whyGrid} data-reveal-stagger>
+          <div className={styles.whyGrid}>
             {REASONS.map((r, i) => (
               <article
                 key={r.title}
@@ -346,7 +346,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          <dl className={styles.whyStats} data-reveal>
+          <dl className={styles.whyStats}>
             {STAT_STRIP.map((s) => (
               <div key={s.label} className={styles.whyStat}>
                 <dt>{s.value}</dt>
@@ -369,7 +369,7 @@ export default function HomePage() {
             </p>
           </header>
 
-          <ol className={styles.processList} data-reveal-stagger>
+          <ol className={styles.processList}>
             {PROCESS.map((p, i) => (
               <li
                 key={p.step}
@@ -401,7 +401,7 @@ export default function HomePage() {
             </p>
           </header>
 
-          <ul className={styles.chipWall} data-reveal-stagger>
+          <ul className={styles.chipWall}>
             {TRUSTED_BY.map((c, i) => (
               <li
                 key={`${c.sector}-${c.city}`}

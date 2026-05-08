@@ -84,9 +84,9 @@ export default function CaseStudiesPage() {
             <span>Chapter · 05 / 07 · Case Studies</span>
             <span aria-hidden="true">CONFIDENTIAL · SANITIZED</span>
           </div>
-          <span className="eyebrow" data-reveal="fade">Case Studies</span>
-          <h1 className={styles.heroHead} data-reveal>The work, in detail.</h1>
-          <p className={styles.heroBody} data-reveal="rise-sm">
+          <span className="eyebrow">Case Studies</span>
+          <h1 className={styles.heroHead}>The work, in detail.</h1>
+          <p className={styles.heroBody}>
             A selection of engagements that illustrate how we work, what we
             deliver, and the outcomes we have helped clients achieve. Each
             study follows the same structure — context, intervention, outcome
@@ -137,7 +137,7 @@ export default function CaseStudiesPage() {
             Selected work, sanitized for client confidentiality.
           </h2>
 
-          <ol className={styles.list} data-reveal-stagger>
+          <ol className={styles.list}>
             {CASE_STUDIES.map((c, i) => (
               <li
                 key={c.no}
@@ -188,7 +188,7 @@ export default function CaseStudiesPage() {
             </p>
           </header>
 
-          <ul className={styles.measure} data-reveal-stagger>
+          <ul className={styles.measure}>
             {[
               {
                 no: "01",
