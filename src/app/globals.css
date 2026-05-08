@@ -40,7 +40,7 @@
   --space-8: 4rem;
   --space-9: 6rem;
   --space-10: 8rem;
-  --space-section: clamp(4rem, 3rem + 5vw, 9rem);
+  --space-section: clamp(3rem, 2rem + 3.5vw, 6.5rem);
   --space-gutter: clamp(1.25rem, 0.8rem + 2vw, 2.5rem);
 
   /* — layout — */

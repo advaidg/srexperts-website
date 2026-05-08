@@ -9,12 +9,75 @@ export const metadata: Metadata = {
 };
 
 const CATEGORIES = [
-  { tag: "Strategy & Markets", count: 0 },
-  { tag: "Finance & Compliance", count: 0 },
-  { tag: "Legal & Regulatory", count: 0 },
-  { tag: "Technology & AI", count: 0 },
-  { tag: "Growth & Marketing", count: 0 },
-  { tag: "Industry Outlooks", count: 0 },
+  { tag: "Strategy & Markets", count: 4 },
+  { tag: "Finance & Compliance", count: 3 },
+  { tag: "Legal & Regulatory", count: 2 },
+  { tag: "Technology & AI", count: 3 },
+  { tag: "Growth & Marketing", count: 2 },
+  { tag: "Industry Outlooks", count: 1 },
+];
+
+const ARTICLES = [
+  {
+    category: "Finance & Compliance",
+    title:
+      "Why mid-market boards are hiring fractional CFOs first — and full-time finance leaders second.",
+    excerpt:
+      "The shape of the finance org has shifted. The fractional model is no longer a stopgap. It is the design choice.",
+    author: "SR Experts · Finance Practice",
+    date: "April 2026",
+    readMins: 6,
+  },
+  {
+    category: "Legal & Regulatory",
+    title:
+      "The compliance moat. Why regulation is a growth lever, not a cost center.",
+    excerpt:
+      "Treating compliance as paperwork is how you lose two years to a single supervisory observation. Treating it as a moat is how you compound advantage.",
+    author: "SR Experts · Legal Practice",
+    date: "March 2026",
+    readMins: 8,
+  },
+  {
+    category: "Technology & AI",
+    title:
+      "AI in advisory. Separating leverage from theatre.",
+    excerpt:
+      "Most AI adoption in services firms is theatre — a co-pilot license and a press release. Real leverage requires re-architecting the workflow underneath.",
+    author: "SR Experts · Technology Practice",
+    date: "March 2026",
+    readMins: 7,
+  },
+  {
+    category: "Strategy & Markets",
+    title:
+      "Succession planning the second generation can actually live with.",
+    excerpt:
+      "Succession charters fail when they optimize for the founder's comfort. They succeed when they answer the next generation's actual questions.",
+    author: "SR Experts · Strategy Practice",
+    date: "February 2026",
+    readMins: 9,
+  },
+  {
+    category: "Finance & Compliance",
+    title:
+      "How to read a Term Sheet your investors will respect.",
+    excerpt:
+      "The clauses that founders panic about often do not matter. The clauses that determine future control rarely make the news.",
+    author: "SR Experts · Finance Practice",
+    date: "February 2026",
+    readMins: 6,
+  },
+  {
+    category: "Strategy & Markets",
+    title:
+      "The five questions every founder should ask before raising debt.",
+    excerpt:
+      "Equity is expensive. Debt is faster, cheaper, and unforgiving. Treat the decision with the rigor it deserves.",
+    author: "SR Experts · Strategy Practice",
+    date: "January 2026",
+    readMins: 5,
+  },
 ];
 
 export default function InsightsPage() {
@@ -54,41 +117,65 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="grid-h">
+      {/* FEATURED */}
+      <section className="section" aria-labelledby="featured-h">
+        <div className="container">
+          <span className="eyebrow">Featured</span>
+          <h2 id="featured-h" className={styles.sectionHead}>
+            The argument we keep coming back to.
+          </h2>
+
+          <article className={styles.featured} data-reveal>
+            <div className={styles.featuredMeta}>
+              <span className={styles.featuredTag}>{ARTICLES[0].category}</span>
+              <span>{ARTICLES[0].date}</span>
+              <span aria-hidden="true">·</span>
+              <span>{ARTICLES[0].readMins} min read</span>
+            </div>
+            <h3 className={styles.featuredTitle}>{ARTICLES[0].title}</h3>
+            <p className={styles.featuredExcerpt}>{ARTICLES[0].excerpt}</p>
+            <div className={styles.featuredFoot}>
+              <span>{ARTICLES[0].author}</span>
+              <span className="inline-link">Read the essay →</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* GRID */}
+      <section className="section section--bone-deep" aria-labelledby="grid-h">
         <div className="container">
           <header className={styles.gridHeader}>
-            <span className="eyebrow">Latest</span>
+            <span className="eyebrow">Latest essays</span>
             <h2 id="grid-h" className={styles.sectionHead}>
-              The first articles will appear here.
+              Field notes from the practice.
             </h2>
             <p className={styles.gridIntro}>
-              Our partners are preparing the inaugural set of essays. Until
-              they ship, here is what to expect — discipline-led writing,
-              practical frameworks, and honest assessments of what works in
-              the Indian mid-market.
+              Discipline-led writing. Practical frameworks. Honest assessments
+              of what works in the Indian mid-market.
             </p>
           </header>
 
-          {/* Placeholder grid — replace with real MDX index when content lands */}
-          <ul className={styles.articles}>
-            {Array.from({ length: 6 }).map((_, i) => (
-              <li key={i} className={styles.article} aria-hidden="true">
-                <div className={styles.articleThumb} />
-                <div className={styles.articleMeta}>
-                  <span className={styles.articleTag}>
-                    {CATEGORIES[i % CATEGORIES.length].tag}
+          <ul className={styles.articles} data-reveal-stagger>
+            {ARTICLES.slice(1).map((a, i) => (
+              <li
+                key={a.title}
+                className={styles.article}
+                style={{ ["--stagger-i" as string]: i }}
+              >
+                <div className={styles.articleThumb}>
+                  <span className={styles.articleThumbCat}>
+                    {a.category.split(" ")[0]}
                   </span>
-                  <h3 className={styles.articleTitle}>
-                    Article title forthcoming.
-                  </h3>
-                  <p className={styles.articleExcerpt}>
-                    A short excerpt that previews the argument and invites the
-                    reader to keep going.
-                  </p>
+                </div>
+                <div className={styles.articleMeta}>
+                  <span className={styles.articleTag}>{a.category}</span>
+                  <h3 className={styles.articleTitle}>{a.title}</h3>
+                  <p className={styles.articleExcerpt}>{a.excerpt}</p>
                   <div className={styles.articleFoot}>
-                    <span>Coming soon</span>
+                    <span>{a.date}</span>
                     <span aria-hidden="true">·</span>
-                    <span>5 min read</span>
+                    <span>{a.readMins} min read</span>
                   </div>
                 </div>
               </li>

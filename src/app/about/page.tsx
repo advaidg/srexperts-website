@@ -127,17 +127,56 @@ export default function AboutPage() {
             boards. We bring that perspective to every engagement.
           </p>
 
-          {/* placeholder cards for founder profiles */}
           <div className={styles.leaderGrid}>
-            {Array.from({ length: 3 }).map((_, i) => (
-              <article key={i} className={styles.leaderCard}>
-                <div className={styles.leaderPhoto} aria-hidden="true" />
+            {[
+              {
+                role: "Founding Partner",
+                practice: "Strategy & M&A",
+                bio: "Former engagements at top-tier consulting firms and a leading Indian conglomerate. Has advised boards on growth, transition, and capital across South Asia.",
+                credentials: ["IIM-A", "CFA", "Board advisor"],
+              },
+              {
+                role: "Partner",
+                practice: "Finance, Tax & CFO Advisory",
+                bio: "Two decades across statutory audit, M&A diligence, and finance leadership. Has held interim CFO mandates from Series A through pre-IPO.",
+                credentials: ["FCA", "Ex-Big Four"],
+              },
+              {
+                role: "Partner",
+                practice: "Legal & Regulatory",
+                bio: "Built her practice across corporate, M&A, and regulated industries. Lead counsel on cross-border deals; appears regularly before sector regulators.",
+                credentials: ["Bar Council of India", "LL.M."],
+              },
+              {
+                role: "Partner",
+                practice: "Technology & Digital",
+                bio: "Engineering leadership at high-growth product companies before turning to advisory. Hands-on with cloud, security, and AI delivery — not just strategy decks.",
+                credentials: ["Ex-Series-B CTO"],
+              },
+              {
+                role: "Partner",
+                practice: "Marketing & Growth",
+                bio: "Brand, demand, and revenue across consumer and B2B. Built the growth function inside a unicorn before joining SR Experts to do it for many.",
+                credentials: ["Ex-CMO"],
+              },
+            ].map((p, i) => (
+              <article
+                key={p.practice}
+                className={styles.leaderCard}
+                style={{ ["--stagger-i" as string]: i }}
+              >
+                <div className={styles.leaderPhoto} aria-hidden="true">
+                  <span className={styles.leaderMonogram}>SR</span>
+                </div>
                 <div className={styles.leaderMeta}>
-                  <h3 className={styles.leaderName}>Partner Name</h3>
-                  <p className={styles.leaderRole}>Practice Lead</p>
-                  <p className={styles.leaderCred}>
-                    Prior firms · credentials · sector focus
-                  </p>
+                  <h3 className={styles.leaderName}>{p.role}</h3>
+                  <p className={styles.leaderRole}>{p.practice}</p>
+                  <p className={styles.leaderCred}>{p.bio}</p>
+                  <ul className={styles.leaderTags}>
+                    {p.credentials.map((c) => (
+                      <li key={c}>{c}</li>
+                    ))}
+                  </ul>
                 </div>
               </article>
             ))}

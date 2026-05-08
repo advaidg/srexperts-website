@@ -100,8 +100,8 @@
 }
 
 .outcome {
-  font-style: italic;
-  color: var(--color-mist) !important;
+  color: var(--color-navy) !important;
+  font-weight: 500;
 }
 
 /* CTA */

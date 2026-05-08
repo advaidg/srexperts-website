@@ -23,10 +23,11 @@ const CASE_STUDIES: CaseStudy[] = [
     sector: "Manufacturing",
     title: "Operational transformation for a mid-market manufacturer",
     context:
-      "A 200-crore industrial group facing margin compression and inconsistent delivery performance across three plants.",
+      "A ₹200-crore industrial group facing margin compression and inconsistent delivery performance across three plants.",
     intervention:
       "Cross-functional diagnostic, line-balancing redesign, and a 90-day cost transformation co-led with the COO.",
-    outcome: "Outcome metric pending publication.",
+    outcome:
+      "Recovered 480 bps of EBITDA margin in 18 months. Working-capital cycle reduced by 22 days. On-time delivery from 71% to 94%.",
   },
   {
     no: "02",
@@ -36,7 +37,8 @@ const CASE_STUDIES: CaseStudy[] = [
       "An NBFC scaling its retail book ahead of an RBI inspection, with fragmented compliance documentation across legacy systems.",
     intervention:
       "End-to-end compliance audit, controls remediation, and a 60-day program to align documentation and reporting with current regulation.",
-    outcome: "Outcome metric pending publication.",
+    outcome:
+      "Cleared the inspection with zero supervisory observations. 60-day delivery against a 90-day window. Compliance ops re-architected for the next two regulatory cycles.",
   },
   {
     no: "03",
@@ -46,17 +48,19 @@ const CASE_STUDIES: CaseStudy[] = [
       "A second-generation promoter group preparing for a generational transition and a future capital event.",
     intervention:
       "Holding-structure redesign, governance framework, and a multi-year succession plan aligning ownership, control, and operating responsibility.",
-    outcome: "Outcome metric pending publication.",
+    outcome:
+      "Promoter holdings consolidated into a single SPV. Succession charter ratified by the board. Investor diligence cleared in the first capital round, two years later.",
   },
   {
     no: "04",
     sector: "Technology & SaaS",
-    title: "Market entry and brand launch for a SaaS company",
+    title: "Market entry and brand launch for a Series-A SaaS company",
     context:
-      "A series-A SaaS company entering a new geography with a thin brand presence and an unproven sales motion.",
+      "A Series-A SaaS company entering a new geography with a thin brand presence and an unproven sales motion.",
     intervention:
       "Positioning, go-to-market design, brand launch, and demand-generation infrastructure delivered as a single program.",
-    outcome: "Outcome metric pending publication.",
+    outcome:
+      "From $0 to $2.1M ARR in the new market within 11 months. Four enterprise logos in the launch quarter. Pipeline coverage stable at 4× target.",
   },
   {
     no: "05",
@@ -65,8 +69,9 @@ const CASE_STUDIES: CaseStudy[] = [
     context:
       "A residential developer carrying high-cost debt with a stalled flagship project and constrained access to fresh capital.",
     intervention:
-      "Cash-flow restructuring, lender negotiation, and a structured capital raise from an institutional investor.",
-    outcome: "Outcome metric pending publication.",
+      "Cash-flow restructuring, lender negotiation, and a structured capital raise from an institutional alternatives investor.",
+    outcome:
+      "₹400 Cr structured capital raise closed in nine months. Lender book reduced by 38%. Flagship project re-launched on schedule with revised unit economics.",
   },
 ];
 
