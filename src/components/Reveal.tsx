@@ -16,7 +16,9 @@ export function Reveal() {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const targets = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const targets = document.querySelectorAll<HTMLElement>(
+      "[data-reveal], [data-reveal-stagger]",
+    );
 
     if (prefersReduced) {
       targets.forEach((el) => {
@@ -42,7 +44,21 @@ export function Reveal() {
 
     targets.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect();
+    // Safety net: if anything is still hidden after 1.5s, reveal it.
+    // Catches edge cases (deep-linked anchors above the fold, observer
+    // never firing on tall elements, etc.).
+    const safety = window.setTimeout(() => {
+      document
+        .querySelectorAll<HTMLElement>(
+          "[data-reveal]:not([data-reveal-shown]), [data-reveal-stagger]:not([data-reveal-shown])",
+        )
+        .forEach((el) => el.setAttribute("data-reveal-shown", "true"));
+    }, 1500);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(safety);
+    };
   }, []);
 
   return null;
