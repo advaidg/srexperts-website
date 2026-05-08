@@ -73,8 +73,12 @@ const CASE_STUDIES: CaseStudy[] = [
 export default function CaseStudiesPage() {
   return (
     <>
-      <section className={styles.hero}>
+      <section className={`pageHero ${styles.hero}`}>
         <div className="container container--narrow">
+          <div className="pageHero-meta">
+            <span>Chapter · 05 / 07 · Case Studies</span>
+            <span aria-hidden="true">CONFIDENTIAL · SANITIZED</span>
+          </div>
           <span className="eyebrow" data-reveal="fade">Case Studies</span>
           <h1 className={styles.heroHead} data-reveal>The work, in detail.</h1>
           <p className={styles.heroBody} data-reveal="rise-sm">

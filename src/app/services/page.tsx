@@ -104,8 +104,12 @@ export default function ServicesPage() {
   return (
     <>
       {/* HERO */}
-      <section className={styles.hero}>
+      <section className={`pageHero ${styles.hero}`}>
         <div className="container container--narrow">
+          <div className="pageHero-meta">
+            <span>Chapter · 03 / 07 · Services</span>
+            <span aria-hidden="true">FIVE PRACTICES · ONE PARTNERSHIP</span>
+          </div>
           <span className="eyebrow" data-reveal="fade">Services</span>
           <h1 className={styles.heroHead} data-reveal>
             Five practices. One partnership.

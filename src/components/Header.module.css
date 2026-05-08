@@ -46,7 +46,7 @@
 }
 
 .cta {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 0.5rem;
   padding: 0.55rem 1rem;
@@ -58,6 +58,12 @@
   border: 1px solid var(--color-navy);
   border-radius: 2px;
   transition: background var(--duration-fast), color var(--duration-fast);
+}
+
+@media (min-width: 860px) {
+  .cta {
+    display: inline-flex;
+  }
 }
 
 .cta:hover {

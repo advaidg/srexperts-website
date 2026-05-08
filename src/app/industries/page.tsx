@@ -56,8 +56,12 @@ const SECTORS = [
 export default function IndustriesPage() {
   return (
     <>
-      <section className={styles.hero}>
+      <section className={`pageHero ${styles.hero}`}>
         <div className="container container--narrow">
+          <div className="pageHero-meta">
+            <span>Chapter · 04 / 07 · Industries</span>
+            <span aria-hidden="true">SEVEN SECTORS</span>
+          </div>
           <span className="eyebrow" data-reveal="fade">Industries</span>
           <h1 className={styles.heroHead} data-reveal>
             Sector-specific expertise. <em>Cross-sector perspective.</em>

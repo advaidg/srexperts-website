@@ -20,8 +20,12 @@ const CATEGORIES = [
 export default function InsightsPage() {
   return (
     <>
-      <section className={styles.hero}>
+      <section className={`pageHero ${styles.hero}`}>
         <div className="container container--narrow">
+          <div className="pageHero-meta">
+            <span>Chapter · 06 / 07 · Insights</span>
+            <span aria-hidden="true">FIELD NOTES</span>
+          </div>
           <span className="eyebrow" data-reveal="fade">Insights</span>
           <h1 className={styles.heroHead} data-reveal>Perspectives from the practice.</h1>
           <p className={styles.heroBody} data-reveal="rise-sm">

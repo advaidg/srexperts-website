@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Counter } from "@/components/Counter";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
@@ -36,8 +37,12 @@ export default function AboutPage() {
   return (
     <>
       {/* HERO */}
-      <section className={styles.hero}>
+      <section className={`pageHero ${styles.hero}`}>
         <div className="container container--narrow">
+          <div className="pageHero-meta">
+            <span>Chapter · 02 / 07 · About</span>
+            <span aria-hidden="true">EST · 2026</span>
+          </div>
           <span className="eyebrow" data-reveal="fade">
             About
           </span>
@@ -154,7 +159,9 @@ export default function AboutPage() {
                 className={styles.numberItem}
                 style={{ ["--stagger-i" as string]: i }}
               >
-                <dt className={styles.numberValue}>{n.value}</dt>
+                <dt className={styles.numberValue}>
+                  <Counter value={n.value} />
+                </dt>
                 <dd className={styles.numberLabel}>{n.label}</dd>
               </div>
             ))}

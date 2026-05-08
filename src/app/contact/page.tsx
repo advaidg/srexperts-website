@@ -59,8 +59,12 @@ const PRACTICE_OPTIONS = [
 export default function ContactPage() {
   return (
     <>
-      <section className={styles.hero}>
+      <section className={`pageHero ${styles.hero}`}>
         <div className="container container--narrow">
+          <div className="pageHero-meta">
+            <span>Chapter · 07 / 07 · Contact</span>
+            <span aria-hidden="true">PARTNER-DIRECT · WITHIN 1 WORKING DAY</span>
+          </div>
           <span className="eyebrow" data-reveal="fade">Contact</span>
           <h1 className={styles.heroHead} data-reveal>Let us understand the problem first.</h1>
           <p className={styles.heroBody} data-reveal="rise-sm">

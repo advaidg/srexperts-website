@@ -27,7 +27,7 @@
   --text-h3: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
   --text-h2: clamp(1.875rem, 1.4rem + 2vw, 3rem);
   --text-h1: clamp(2.5rem, 1.6rem + 4.5vw, 5.5rem);
-  --text-display: clamp(3rem, 1.4rem + 7vw, 8rem);
+  --text-display: clamp(2.75rem, 1.5rem + 5vw, 6.5rem);
 
   /* — spacing — */
   --space-1: 0.25rem;
@@ -343,6 +343,103 @@ svg {
 
 /* Items can opt-in to a per-row delay via inline style: --stagger-i */
 
+/* — Atmospheric grain (data-uri SVG noise) — */
+
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.grain--dark {
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* — Soft radial glow used in dark sections — */
+
+.glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+/* — Scroll cue that lives at the bottom of the hero — */
+
+@keyframes scrollCue {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+}
+
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-dmsans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  padding: 1rem 0.5rem;
+}
+
+.scroll-cue::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-gold) 0%,
+    var(--color-gold) 35%,
+    transparent 100%
+  );
+  animation: scrollCue 2.4s var(--ease-out) infinite;
+}
+
+/* — Magnetic-feeling primary button: gold sweep on hover — */
+
+.btn--primary {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--color-navy-light),
+    var(--color-gold)
+  );
+  transform: translateX(-101%);
+  transition: transform 600ms var(--ease-out);
+  z-index: -1;
+}
+
+.btn--primary:hover::before {
+  transform: translateX(0);
+}
+
 /* — Subtle hero letter rise — */
 
 @keyframes letterRise {
@@ -433,6 +530,116 @@ svg {
     transform: scale(1.4);
     opacity: 1;
   }
+}
+
+/* — Cursor accent — */
+
+.cursor-accent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  pointer-events: none;
+  z-index: 90;
+  mix-blend-mode: multiply;
+  filter: blur(8px);
+  opacity: 0.7;
+  transition: opacity 200ms, width 200ms var(--ease-out),
+    height 200ms var(--ease-out);
+  will-change: transform;
+}
+
+.cursor-accent.is-down {
+  width: 26px;
+  height: 26px;
+  opacity: 0.95;
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .cursor-accent {
+    display: none;
+  }
+}
+
+/* — Shared page-hero atmosphere — */
+/* Apply .pageHero to the wrapper section. It gets grain, glow, generous
+   bottom-anchored spacing, and a meta-row pattern. Page-specific styles
+   layer on top. */
+
+.pageHero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.pageHero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(196, 162, 74, 0.1) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(28, 52, 120, 0.07) 0%,
+      transparent 50%
+    );
+}
+
+.pageHero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.pageHero-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 1rem + 4vw, 4.5rem);
+  font-family: var(--font-dmsans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+}
+
+.pageHero-meta strong {
+  color: var(--color-navy);
+  font-weight: 500;
+}
+
+/* Refined eyebrow with leading bullet */
+.eyebrow {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.eyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.85;
 }
 
 /* Skip link */

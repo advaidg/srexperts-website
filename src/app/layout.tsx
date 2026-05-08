@@ -4,6 +4,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StructuredData } from "@/components/StructuredData";
 import { Reveal } from "@/components/Reveal";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { CursorAccent } from "@/components/CursorAccent";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
@@ -125,6 +127,8 @@ export default function RootLayout({
         </a>
         <StructuredData />
         <Reveal />
+        <ScrollProgress />
+        <CursorAccent />
         <Header />
         <main id="main">{children}</main>
         <Footer />

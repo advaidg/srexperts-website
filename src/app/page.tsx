@@ -1,6 +1,74 @@
 import Link from "next/link";
 import styles from "./home.module.css";
 
+const SERVICES = [
+  {
+    no: "01",
+    title: "Strategy & Management Consulting",
+    body:
+      "Market entry, growth strategy, operational transformation, and turnaround advisory for businesses ready to scale.",
+    href: "/services#strategy",
+  },
+  {
+    no: "02",
+    title: "Finance, CA & CS Services",
+    body:
+      "Audit, taxation, statutory compliance, financial planning, company secretarial work, and CFO advisory, executed with precision.",
+    href: "/services#finance",
+  },
+  {
+    no: "03",
+    title: "Legal & Regulatory Compliance",
+    body:
+      "Corporate law, contract advisory, dispute resolution, regulatory filings, and end-to-end compliance for businesses operating in complex environments.",
+    href: "/services#legal",
+  },
+  {
+    no: "04",
+    title: "Technology & Digital Transformation",
+    body:
+      "Custom software, AI integration, cloud migration, cybersecurity audits, and the digital infrastructure modern businesses run on.",
+    href: "/services#technology",
+  },
+  {
+    no: "05",
+    title: "Marketing & Growth",
+    body:
+      "Brand strategy, performance marketing, content, and demand generation that connects spend to revenue.",
+    href: "/services#marketing",
+  },
+];
+
+const REASONS = [
+  {
+    title: "One Partnership. Every Discipline.",
+    body:
+      "Stop managing five vendors. Work with one team that already understands your business.",
+  },
+  {
+    title: "Senior Talent on Every Engagement.",
+    body: "Partners are on your engagements, not just on your invoices.",
+  },
+  {
+    title: "Pricing Built for the Mid-Market.",
+    body:
+      "The expertise of a Big Four, structured for businesses without a Big Four budget.",
+  },
+  {
+    title: "Outcomes, Not Hours.",
+    body:
+      "We measure success by what changes in your business, not by what we billed.",
+  },
+];
+
+const PRACTICES_RAIL = [
+  { no: "01", label: "Strategy" },
+  { no: "02", label: "Finance" },
+  { no: "03", label: "Legal" },
+  { no: "04", label: "Technology" },
+  { no: "05", label: "Marketing" },
+];
+
 function AnimatedHeadline({ line1, line2 }: { line1: string; line2: string }) {
   const renderLine = (line: string, base: number) =>
     [...line].map((char, i) => (
@@ -14,145 +82,128 @@ function AnimatedHeadline({ line1, line2 }: { line1: string; line2: string }) {
 
   return (
     <>
-      <span aria-hidden="true">{renderLine(line1, 0)}</span>
-      <br aria-hidden="true" />
-      <em className={styles.heroEm} aria-hidden="true">
+      <span className={styles.line} aria-hidden="true">
+        {renderLine(line1, 0)}
+      </span>
+      <span className={`${styles.line} ${styles.heroEm}`} aria-hidden="true">
         {renderLine(line2, line1.length + 4)}
-      </em>
+      </span>
     </>
   );
 }
-
-function MarqueeContent() {
-  const items = [
-    "Strategy",
-    "Finance",
-    "Legal",
-    "Technology",
-    "Marketing",
-    "One Partnership",
-    "Five Practices",
-    "Built for India",
-  ];
-  return (
-    <span>
-      {items.map((item, i) => (
-        <span key={`${item}-${i}`}>
-          {item}
-          <span className="marquee-dot" aria-hidden="true" />
-        </span>
-      ))}
-    </span>
-  );
-}
-
-const SERVICES = [
-  {
-    no: "01",
-    title: "Strategy & Management Consulting",
-    body: "Market entry, growth strategy, operational transformation, and turnaround advisory for businesses ready to scale.",
-    href: "/services#strategy",
-  },
-  {
-    no: "02",
-    title: "Finance, CA & CS Services",
-    body: "Audit, taxation, statutory compliance, financial planning, company secretarial work, and CFO advisory, executed with precision.",
-    href: "/services#finance",
-  },
-  {
-    no: "03",
-    title: "Legal & Regulatory Compliance",
-    body: "Corporate law, contract advisory, dispute resolution, regulatory filings, and end-to-end compliance for businesses operating in complex environments.",
-    href: "/services#legal",
-  },
-  {
-    no: "04",
-    title: "Technology & Digital Transformation",
-    body: "Custom software, AI integration, cloud migration, cybersecurity audits, and the digital infrastructure modern businesses run on.",
-    href: "/services#technology",
-  },
-  {
-    no: "05",
-    title: "Marketing & Growth",
-    body: "Brand strategy, performance marketing, content, and demand generation that connects spend to revenue.",
-    href: "/services#marketing",
-  },
-];
-
-const REASONS = [
-  {
-    title: "One Partnership. Every Discipline.",
-    body: "Stop managing five vendors. Work with one team that already understands your business.",
-  },
-  {
-    title: "Senior Talent on Every Engagement.",
-    body: "Partners are on your engagements, not just on your invoices.",
-  },
-  {
-    title: "Pricing Built for the Mid-Market.",
-    body: "The expertise of a Big Four, structured for businesses without a Big Four budget.",
-  },
-  {
-    title: "Outcomes, Not Hours.",
-    body: "We measure success by what changes in your business, not by what we billed.",
-  },
-];
 
 export default function HomePage() {
   return (
     <>
       {/* HERO */}
       <section className={styles.hero} aria-labelledby="hero-h">
-        <div className={`container ${styles.heroInner}`}>
-          <span className="eyebrow" data-reveal="fade">
-            Integrated Advisory
-          </span>
-          <h1 id="hero-h" className={`${styles.heroTitle} letterRise`} aria-label="The Only Expert You Need.">
-            <AnimatedHeadline line1="The Only Expert" line2="You Need." />
-          </h1>
-          <p className={styles.heroSub} data-reveal="rise-sm">
-            Strategy, finance, legal, technology, and marketing, delivered by
-            one firm. Built for the businesses that built India.
-          </p>
-          <p className={styles.heroSupport} data-reveal="rise-sm">
-            The depth of a Big Four. The agility of a partner who actually
-            picks up the phone.
-          </p>
-          <div className={styles.heroCtas} data-reveal="rise-sm">
-            <Link href="/contact" className="btn btn--primary">
-              Book a Discovery Call
-              <span className="btn-arrow" aria-hidden="true">
-                →
-              </span>
-            </Link>
-            <Link href="/services" className="btn btn--ghost">
-              Explore Our Services
-            </Link>
-          </div>
+        <div className={styles.heroBg}>
+          <div className="grain" aria-hidden="true" />
         </div>
 
-        <aside aria-hidden="true" className={styles.heroSpec} data-reveal>
-          <div className={styles.specRow}>
-            <span>FIVE PRACTICES</span>
-            <span>ONE PARTNERSHIP</span>
+        {/* meta row */}
+        <div className={styles.heroMeta}>
+          <span>
+            <span className="dot" aria-hidden="true" />
+            <strong>Live</strong> · Mumbai · Bengaluru · Singapore
+          </span>
+          <span aria-hidden="true">SR/01 · {new Date().getFullYear()}</span>
+        </div>
+
+        {/* main row */}
+        <div className={styles.heroBody}>
+          <div>
+            <span className={`eyebrow ${styles.heroEyebrow}`} data-reveal="fade">
+              Integrated Advisory
+            </span>
+            <h1
+              id="hero-h"
+              className={`${styles.heroTitle} letterRise`}
+              aria-label="The Only Expert You Need."
+            >
+              <AnimatedHeadline line1="The Only Expert" line2="You Need." />
+            </h1>
+
+            <p className={styles.heroSub} data-reveal="rise-sm">
+              Strategy, finance, legal, technology, and marketing, delivered by
+              one firm. Built for the businesses that built India.
+            </p>
+            <p className={styles.heroSupport} data-reveal="rise-sm">
+              The depth of a Big Four. The agility of a partner who actually
+              picks up the phone.
+            </p>
+            <div className={styles.heroCtas} data-reveal="rise-sm">
+              <Link href="/contact" className="btn btn--primary">
+                Book a Discovery Call
+                <span className="btn-arrow" aria-hidden="true">
+                  →
+                </span>
+              </Link>
+              <Link href="/services" className="btn btn--ghost">
+                Explore Our Services
+              </Link>
+            </div>
           </div>
-          <div className={styles.specGrid}>
-            <span>Strategy</span>
-            <span>Finance</span>
-            <span>Legal</span>
-            <span>Technology</span>
-            <span>Marketing</span>
+
+          <aside className={styles.heroCard} data-reveal aria-hidden="true">
+            <div className={styles.heroCardTop}>
+              <span>Engagement Profile</span>
+              <em>Active</em>
+            </div>
+            <div className={styles.heroCardStats}>
+              <div className={styles.heroCardStat}>
+                <span className={styles.heroCardValue}>120+</span>
+                <span className={styles.heroCardLabel}>Engagements</span>
+              </div>
+              <div className={styles.heroCardStat}>
+                <span className={styles.heroCardValue}>18</span>
+                <span className={styles.heroCardLabel}>Industries</span>
+              </div>
+              <div className={styles.heroCardStat}>
+                <span className={styles.heroCardValue}>9</span>
+                <span className={styles.heroCardLabel}>Countries</span>
+              </div>
+              <div className={styles.heroCardStat}>
+                <span className={styles.heroCardValue}>78%</span>
+                <span className={styles.heroCardLabel}>Repeat rate</span>
+              </div>
+            </div>
+            <p className={styles.heroCardQuote}>
+              &ldquo;Most firms sell hours. We deliver clarity.&rdquo;
+            </p>
+          </aside>
+        </div>
+
+        {/* hero foot */}
+        <div className={styles.heroFoot}>
+          <div className={styles.heroFootLeft}>
+            <span>EST · 2026</span>
+            <span aria-hidden="true">·</span>
+            <span>EN-IN</span>
           </div>
-        </aside>
+          <span className="scroll-cue" aria-hidden="true">
+            Scroll
+          </span>
+          <div className={styles.heroFootLeft}>
+            <span>SREXPERTS.IN</span>
+          </div>
+        </div>
       </section>
 
-      {/* MARQUEE */}
-      <div className={styles.marqueeWrap} aria-hidden="true">
-        <div className="marquee">
-          <div className="marquee-track">
-            <MarqueeContent />
-            <MarqueeContent />
+      {/* PRACTICE RAIL */}
+      <div className={styles.railWrap} aria-hidden="true">
+        <div className={styles.rail}>
+          <div className={styles.railLabel}>
+            Five practices · One partnership
           </div>
+          <ul className={styles.railList}>
+            {PRACTICES_RAIL.map((p) => (
+              <li key={p.no} className={styles.railItem}>
+                <span className={styles.railNo}>{p.no}</span>
+                <span>{p.label}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
@@ -187,7 +238,9 @@ export default function HomePage() {
           <header className={styles.servicesHeader}>
             <div>
               <span className="eyebrow">What We Do</span>
-              <h2 id="services-h">A single advisory partnership across five integrated practices.</h2>
+              <h2 id="services-h">
+                A single advisory partnership across five integrated practices.
+              </h2>
             </div>
             <Link href="/services" className="inline-link">
               Explore all services →

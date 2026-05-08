@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { MobileMenu } from "./MobileMenu";
 import styles from "./Header.module.css";
 
 const NAV = [
@@ -26,6 +27,7 @@ export function Header() {
           Contact
           <span aria-hidden="true">→</span>
         </Link>
+        <MobileMenu />
       </div>
     </header>
   );
